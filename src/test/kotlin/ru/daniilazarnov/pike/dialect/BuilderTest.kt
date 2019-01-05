@@ -50,7 +50,7 @@ class BuilderTest {
         val result = from(PersonRelation)
                 .naturalJoin(AddressRelation)
                 .selectAll()
-                .toString(Builder)
+                .toString()
         assertEquals(expected, result)
     }
 
@@ -61,7 +61,7 @@ class BuilderTest {
                 .join(AddressRelation)
                 .on { e, o -> o.id eq e.address }
                 .selectAll()
-                .toString(Builder)
+                .toString()
 
         assertEquals(expected, result)
     }
