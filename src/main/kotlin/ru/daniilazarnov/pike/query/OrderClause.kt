@@ -1,9 +1,9 @@
 package ru.daniilazarnov.pike.query
 
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
-class OrderClause<T: Table>(
+class OrderClause<T: Relation>(
         val orderings: Iterable<Ordering>,
         val subject: Subject<T>,
         val whereClause: WhereClause<T>?,
@@ -45,7 +45,7 @@ class OrderClause<T: Table>(
 
 }
 
-class Order2Clause<T: Table, T2: Table>(
+class Order2Clause<T: Relation, T2: Relation>(
         val orderings: Iterable<Ordering>,
         val joinOn2Clause: JoinOn2Clause<T, T2>,
         val where2Clause: Where2Clause<T, T2>?,

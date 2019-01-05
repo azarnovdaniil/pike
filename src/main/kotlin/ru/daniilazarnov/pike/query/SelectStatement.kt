@@ -1,10 +1,10 @@
 package ru.daniilazarnov.pike.query
 
-import ru.daniilazarnov.pike.dialect.Dialect
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
+import ru.daniilazarnov.pike.core.Builder
 
-class SelectStatement<T: Table>(
+class SelectStatement<T: Relation>(
         val projection: Iterable<Projection>,
         val subject: Subject<T>,
         val whereClause: WhereClause<T>?,
@@ -14,12 +14,12 @@ class SelectStatement<T: Table>(
         val groupClause: GroupClause<T>?,
         val havingClause: HavingClause<T>?) {
 
-    fun toString(dialect: Dialect): String {
-        return dialect.build(this)
+    override fun toString(): String {
+        return Builder.build(this)
     }
 }
 
-class Select2Statement<T: Table, T2: Table>(
+class Select2Statement<T: Relation, T2: Relation>(
         val projection: Iterable<Projection>,
         val joinOn2Clause: JoinOn2Clause<T, T2>,
         val where2Clause: Where2Clause<T, T2>?,
@@ -29,7 +29,7 @@ class Select2Statement<T: Table, T2: Table>(
         val group2Clause: Group2Clause<T, T2>?,
         val having2Clause: Having2Clause<T, T2>?) {
 
-    fun toString(dialect: Dialect): String {
-        return dialect.build(this)
+    override fun toString(): String {
+        return Builder.build(this)
     }
 }

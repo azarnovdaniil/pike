@@ -2,9 +2,9 @@ package ru.daniilazarnov.pike.query
 
 import ru.daniilazarnov.pike.core.Predicate
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
-class Join2Clause<T: Table, T2: Table>(
+class Join2Clause<T: Relation, T2: Relation>(
         val subject: Subject<T>,
         val table2: T2,
         val type: JoinType = JoinType.INNER
@@ -21,7 +21,7 @@ class Join2Clause<T: Table, T2: Table>(
 
 }
 
-class JoinOn2Clause<T: Table, T2: Table>(
+class JoinOn2Clause<T: Relation, T2: Relation>(
         val subject: Subject<T>,
         val table2: T2,
         val type: JoinType,

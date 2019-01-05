@@ -1,9 +1,9 @@
 package ru.daniilazarnov.pike.query
 
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
-class LimitClause<T : Table>(
+class LimitClause<T : Relation>(
         val limit: Any,
         val subject: Subject<T>,
         val whereClause: WhereClause<T>?,
@@ -35,7 +35,7 @@ class LimitClause<T : Table>(
     }
 }
 
-class Limit2Clause<T : Table, T2 : Table>(
+class Limit2Clause<T : Relation, T2 : Relation>(
         val limit: Any,
         val joinOn2Clause: JoinOn2Clause<T, T2>,
         val where2Clause: Where2Clause<T, T2>?,

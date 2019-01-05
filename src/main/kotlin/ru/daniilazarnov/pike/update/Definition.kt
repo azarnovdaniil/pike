@@ -1,10 +1,10 @@
 package ru.daniilazarnov.pike.update
 
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
 interface Definition : Iterable<Definition> {
 
-    val column: Table.Column
+    val property: Relation.Property
     val type: String
 
     override fun iterator(): Iterator<Definition> {
@@ -20,5 +20,5 @@ interface Definition : Iterable<Definition> {
         }
     }
 
-    open class Column(override val column: Table.Column, override val type: String) : Definition
+    open class Column(override val property: Relation.Property, override val type: String) : Definition
 }

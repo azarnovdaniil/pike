@@ -2,22 +2,22 @@ package ru.daniilazarnov.pike.core
 
 import ru.daniilazarnov.pike.query.*
 
-open class Subject<T: Table> private constructor(val table: T) {
+open class Subject<T: Relation> private constructor(val table: T) {
 
     override fun toString(): String {
         return table.toString()
     }
 
-    class From<T: Table>(table: T) : Subject<T>(table) {
-        fun <T2: Table> union(table2: T2): Join2Clause<T, T2> {
+    class From<T: Relation>(table: T) : Subject<T>(table) {
+        fun <T2: Relation> union(table2: T2): Join2Clause<T, T2> {
             return Join2Clause(this, table2)
         }
 
-        fun <T2: Table> join(table2: T2): Join2Clause<T, T2> {
+        fun <T2: Relation> join(table2: T2): Join2Clause<T, T2> {
             return Join2Clause(this, table2)
         }
 
-        fun <T2: Table> naturalJoin(table2: T2): JoinOn2Clause<T, T2> {
+        fun <T2: Relation> naturalJoin(table2: T2): JoinOn2Clause<T, T2> {
             return JoinOn2Clause(
                     this,
                     table2,
@@ -26,7 +26,7 @@ open class Subject<T: Table> private constructor(val table: T) {
             )
         }
 
-        fun <T2: Table> outerJoin(table2: T2): Join2Clause<T, T2> {
+        fun <T2: Relation> outerJoin(table2: T2): Join2Clause<T, T2> {
             return Join2Clause(this, table2, JoinType.OUTER)
         }
 
@@ -78,6 +78,6 @@ open class Subject<T: Table> private constructor(val table: T) {
     }
 }
 
-fun <T: Table> from(table: T): Subject.From<T> {
+fun <T: Relation> from(table: T): Subject.From<T> {
     return Subject.From(table)
 }

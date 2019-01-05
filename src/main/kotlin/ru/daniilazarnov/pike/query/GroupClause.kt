@@ -2,9 +2,9 @@ package ru.daniilazarnov.pike.query
 
 import ru.daniilazarnov.pike.core.Predicate
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
-class GroupClause<T: Table>(
+class GroupClause<T: Relation>(
         val projection: Iterable<Projection>,
         val subject: Subject<T>,
         val whereClause: WhereClause<T>?) {
@@ -53,7 +53,7 @@ class GroupClause<T: Table>(
 
 }
 
-class Group2Clause<T: Table, T2: Table>(
+class Group2Clause<T: Relation, T2: Relation>(
         val projection: Iterable<Projection>,
         val joinOn2Clause: JoinOn2Clause<T, T2>,
         val where2Clause: Where2Clause<T, T2>?) {

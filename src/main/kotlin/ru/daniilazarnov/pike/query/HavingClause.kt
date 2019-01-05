@@ -2,9 +2,9 @@ package ru.daniilazarnov.pike.query
 
 import ru.daniilazarnov.pike.core.Predicate
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
-class HavingClause<T: Table>(
+class HavingClause<T: Relation>(
         val predicate: Predicate,
         val subject: Subject<T>,
         val groupClause: GroupClause<T>,
@@ -49,7 +49,7 @@ class HavingClause<T: Table>(
 
 }
 
-class Having2Clause<T: Table, T2: Table>(
+class Having2Clause<T: Relation, T2: Relation>(
         val predicate: Predicate,
         val joinOn2Clause: JoinOn2Clause<T, T2>,
         val group2Clause: Group2Clause<T, T2>,

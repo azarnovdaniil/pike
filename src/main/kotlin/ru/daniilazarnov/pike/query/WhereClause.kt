@@ -2,9 +2,9 @@ package ru.daniilazarnov.pike.query
 
 import ru.daniilazarnov.pike.core.Predicate
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
-class WhereClause<T : Table>(
+class WhereClause<T : Relation>(
         val predicate: Predicate,
         val subject: Subject<T>
 ) {
@@ -63,7 +63,7 @@ class WhereClause<T : Table>(
 
 }
 
-class Where2Clause<T : Table, T2 : Table>(
+class Where2Clause<T : Relation, T2 : Relation>(
         val predicate: Predicate,
         val joinOn2Clause: JoinOn2Clause<T, T2>
 ) {

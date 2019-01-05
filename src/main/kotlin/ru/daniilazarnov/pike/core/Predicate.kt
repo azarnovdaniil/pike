@@ -34,19 +34,19 @@ infix fun Predicate.or(predicate: Predicate): OrExpression {
  */
 class EqExpression(val left: Any?, val right: Any?) : Predicate
 
-infix fun Table.Column.eq(column: Table.Column): EqExpression {
-    return EqExpression(this, column)
+infix fun Relation.Property.eq(property: Relation.Property): EqExpression {
+    return EqExpression(this, property)
 }
 
-infix fun Table.Column.eq(str: String?): EqExpression {
+infix fun Relation.Property.eq(str: String?): EqExpression {
     return EqExpression(this, str)
 }
 
-infix fun Table.Column.eq(num: Number): EqExpression {
+infix fun Relation.Property.eq(num: Number): EqExpression {
     return EqExpression(this, num)
 }
 
-infix fun Table.Column.eq(flag: Boolean): EqExpression {
+infix fun Relation.Property.eq(flag: Boolean): EqExpression {
     return EqExpression(this, flag)
 }
 
@@ -64,19 +64,19 @@ fun irrelevant(): IrrelExpression {
  */
 class NeExpression(val left: Any?, val right: Any?) : Predicate
 
-infix fun Table.Column.ne(column: Table.Column): NeExpression {
-    return NeExpression(this, column)
+infix fun Relation.Property.ne(property: Relation.Property): NeExpression {
+    return NeExpression(this, property)
 }
 
-infix fun Table.Column.ne(str: String?): NeExpression {
+infix fun Relation.Property.ne(str: String?): NeExpression {
     return NeExpression(this, str)
 }
 
-infix fun Table.Column.ne(num: Number): NeExpression {
+infix fun Relation.Property.ne(num: Number): NeExpression {
     return NeExpression(this, num)
 }
 
-infix fun Table.Column.ne(flag: Boolean): NeExpression {
+infix fun Relation.Property.ne(flag: Boolean): NeExpression {
     return NeExpression(this, flag)
 }
 
@@ -85,15 +85,15 @@ infix fun Table.Column.ne(flag: Boolean): NeExpression {
  */
 class LtExpression(val left: Any?, val right: Any?) : Predicate
 
-infix fun Table.Column.lt(column: Table.Column): LtExpression {
-    return LtExpression(this, column)
+infix fun Relation.Property.lt(property: Relation.Property): LtExpression {
+    return LtExpression(this, property)
 }
 
-infix fun Table.Column.lt(str: String?): LtExpression {
+infix fun Relation.Property.lt(str: String?): LtExpression {
     return LtExpression(this, str)
 }
 
-infix fun Table.Column.lt(num: Number): LtExpression {
+infix fun Relation.Property.lt(num: Number): LtExpression {
     return LtExpression(this, num)
 }
 
@@ -102,15 +102,15 @@ infix fun Table.Column.lt(num: Number): LtExpression {
  */
 class LteExpression(val left: Any?, val right: Any?) : Predicate
 
-infix fun Table.Column.lte(column: Table.Column): LteExpression {
-    return LteExpression(this, column)
+infix fun Relation.Property.lte(property: Relation.Property): LteExpression {
+    return LteExpression(this, property)
 }
 
-infix fun Table.Column.lte(str: String?): LteExpression {
+infix fun Relation.Property.lte(str: String?): LteExpression {
     return LteExpression(this, str)
 }
 
-infix fun Table.Column.lte(num: Number): LteExpression {
+infix fun Relation.Property.lte(num: Number): LteExpression {
     return LteExpression(this, num)
 }
 
@@ -119,15 +119,15 @@ infix fun Table.Column.lte(num: Number): LteExpression {
  */
 class GtExpression(val left: Any?, val right: Any?) : Predicate
 
-infix fun Table.Column.gt(column: Table.Column): GtExpression {
-    return GtExpression(this, column)
+infix fun Relation.Property.gt(property: Relation.Property): GtExpression {
+    return GtExpression(this, property)
 }
 
-infix fun Table.Column.gt(str: String?): GtExpression {
+infix fun Relation.Property.gt(str: String?): GtExpression {
     return GtExpression(this, str)
 }
 
-infix fun Table.Column.gt(num: Number): GtExpression {
+infix fun Relation.Property.gt(num: Number): GtExpression {
     return GtExpression(this, num)
 }
 
@@ -136,14 +136,14 @@ infix fun Table.Column.gt(num: Number): GtExpression {
  */
 class GteExpression(val left: Any?, val right: Any?) : Predicate
 
-infix fun Table.Column.gte(column: Table.Column): GteExpression {
-    return GteExpression(this, column)
+infix fun Relation.Property.gte(property: Relation.Property): GteExpression {
+    return GteExpression(this, property)
 }
 
-infix fun Table.Column.gte(str: String?): GteExpression {
+infix fun Relation.Property.gte(str: String?): GteExpression {
     return GteExpression(this, str)
 }
 
-infix fun Table.Column.gte(num: Number): GteExpression {
+infix fun Relation.Property.gte(num: Number): GteExpression {
     return GteExpression(this, num)
 }

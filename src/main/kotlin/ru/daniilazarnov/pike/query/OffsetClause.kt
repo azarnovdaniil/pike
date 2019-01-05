@@ -1,9 +1,9 @@
 package ru.daniilazarnov.pike.query
 
 import ru.daniilazarnov.pike.core.Subject
-import ru.daniilazarnov.pike.core.Table
+import ru.daniilazarnov.pike.core.Relation
 
-class OffsetClause<T: Table>(
+class OffsetClause<T: Relation>(
         val offset: Any,
         val limit: LimitClause<T>,
         val subject: Subject<T>,
@@ -25,7 +25,7 @@ class OffsetClause<T: Table>(
     }
 }
 
-class Offset2Clause<T: Table, T2: Table>(
+class Offset2Clause<T: Relation, T2: Relation>(
         val offset: Any,
         val limit2Clause: Limit2Clause<T, T2>,
         val joinOn2Clause: JoinOn2Clause<T, T2>,

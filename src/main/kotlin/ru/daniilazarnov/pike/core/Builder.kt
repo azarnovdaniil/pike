@@ -1,11 +1,10 @@
-package ru.daniilazarnov.pike.dialect
+package ru.daniilazarnov.pike.core
 
-import ru.daniilazarnov.pike.core.*
 import ru.daniilazarnov.pike.query.*
 
-object MathDialect : Dialect {
+object Builder {
 
-    override fun <T : Table> build(statement: SelectStatement<T>): String {
+    fun <T : Relation> build(statement: SelectStatement<T>): String {
         val builder = StringBuilder()
 
         val where = statement.whereClause
@@ -14,7 +13,7 @@ object MathDialect : Dialect {
             appendPredicate(builder, where.predicate, false)
         }
         val projection = statement.projection
-        if(!projection.none()) {
+        if (!projection.none()) {
             builder.append("π")
             builder.append("(")
             appendProjection(builder, projection, false)
@@ -24,8 +23,6 @@ object MathDialect : Dialect {
         builder.append("(")
         appendTableName(builder, statement.subject.table)
         builder.append(")")
-
-
 
 
         val group = statement.groupClause
@@ -61,7 +58,7 @@ object MathDialect : Dialect {
         return builder.toString()
     }
 
-    override fun <T : Table, T2 : Table> build(statement: Select2Statement<T, T2>): String {
+    fun <T : Relation, T2 : Relation> build(statement: Select2Statement<T, T2>): String {
         val builder = StringBuilder()
 
         val where = statement.where2Clause
@@ -71,7 +68,7 @@ object MathDialect : Dialect {
         }
 
         val projection = statement.projection
-        if(!projection.none()) {
+        if (!projection.none()) {
             builder.append("π")
             builder.append("(")
             appendProjection(builder, projection, false)
@@ -85,13 +82,12 @@ object MathDialect : Dialect {
             appendTableName(builder, statement.joinOn2Clause.table2)
         } else {
             if (statement.joinOn2Clause.type == JoinType.OUTER) builder.append(" OUTER")
-            builder.append(" JOIN ")
-            appendTableName(builder, statement.joinOn2Clause.table2)
-            builder.append(" ON ")
+            builder.append(" ⋈")
             appendPredicate(builder, statement.joinOn2Clause.condition, true)
+            builder.append(" ")
+            appendTableName(builder, statement.joinOn2Clause.table2)
         }
         builder.append(")")
-
 
 
         val group = statement.group2Clause
@@ -129,7 +125,7 @@ object MathDialect : Dialect {
 
     private fun appendPredicate(builder: StringBuilder, value: Any?, fullFormat: Boolean = true) {
         when (value) {
-            is Table.Column -> if (fullFormat) appendFullColumnName(builder, value) else appendShortColumnName(builder, value)
+            is Relation.Property -> if (fullFormat) appendFullColumnName(builder, value) else appendShortColumnName(builder, value)
 
             is NotExpression -> {
                 builder.append("(NOT ")
@@ -224,7 +220,7 @@ object MathDialect : Dialect {
                 builder.append(delim)
                 delim = ", "
 
-                if (proj is Table.Column) {
+                if (proj is Relation.Property) {
                     if (fullFormat) {
                         appendFullColumnName(builder, proj)
                     } else {
@@ -244,11 +240,11 @@ object MathDialect : Dialect {
             builder.append(delim)
             delim = ", "
 
-            if (order.key is Table.Column) {
+            if (order.key is Relation.Property) {
                 if (fullFormat) {
-                    appendFullColumnName(builder, order.key as Table.Column)
+                    appendFullColumnName(builder, order.key as Relation.Property)
                 } else {
-                    appendShortColumnName(builder, order.key as Table.Column)
+                    appendShortColumnName(builder, order.key as Relation.Property)
                 }
             } else {
                 builder.append(order.key)
@@ -258,16 +254,16 @@ object MathDialect : Dialect {
         }
     }
 
-    private fun appendTableName(builder: StringBuilder, table: Table) {
-        builder.append("$table")
+    private fun appendTableName(builder: StringBuilder, relation: Relation) {
+        builder.append("$relation")
     }
 
-    private fun appendShortColumnName(builder: StringBuilder, column: Table.Column) {
-        builder.append("$column")
+    private fun appendShortColumnName(builder: StringBuilder, property: Relation.Property) {
+        builder.append("$property")
     }
 
-    private fun appendFullColumnName(builder: StringBuilder, column: Table.Column) {
-        builder.append("\"${column.table}\".\"$column\"")
+    private fun appendFullColumnName(builder: StringBuilder, property: Relation.Property) {
+        builder.append("${property.relation}.$property")
     }
 
     private fun appendValue(builder: StringBuilder, value: Any?) {
