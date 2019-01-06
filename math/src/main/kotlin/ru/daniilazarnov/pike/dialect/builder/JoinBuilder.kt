@@ -22,6 +22,7 @@ object JoinBuilder : Builder<Join<*, *>> {
         val selection = ast.selection
         when (selection) {
             is Join<*, *> -> {
+                generator.writeCloseBracket()
                 build(selection, generator)
             }
 

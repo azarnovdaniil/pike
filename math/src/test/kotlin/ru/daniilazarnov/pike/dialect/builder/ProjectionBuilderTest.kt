@@ -77,7 +77,7 @@ class ProjectionBuilderTest {
 
     @Test
     fun `test double join`() {
-        val expected = "(Person ⋈(Person.address = Address.id) Address) ⋈(Person.phone = Address.id) Contact)"
+        val expected = "(Person ⋈(Person.address = Address.id) Address) ⋈(Person.phone = Contact.id) Contact)"
         val result = selection(Person)
                 .join(Contact, Person.phone.eq(Contact.id))
                 .join(Address, Person.address.eq(Address.id))
