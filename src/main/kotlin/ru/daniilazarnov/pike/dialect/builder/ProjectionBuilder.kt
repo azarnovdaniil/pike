@@ -4,55 +4,55 @@ import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.query.Join
 import ru.daniilazarnov.pike.core.query.Projection
 import ru.daniilazarnov.pike.dialect.Builder
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 open class ProjectionBuilder : Builder<Projection<*>> {
 
-    override fun build(ast: Projection<*>, writer: Writer) {
+    override fun build(ast: Projection<*>, generator: Generator) {
         val selection = ast.selection
 
         when (selection) {
             !is Join<out Relation, out Relation> -> {
                 val expr = selection.expr
                 if (expr != null) {
-                    writer.writeString("σ")
-                    writer.writeExpr(expr)
+                    generator.writeString("σ")
+                    generator.writeExpr(expr)
                 }
             }
         }
 
         val projection = ast.projection
         if (!projection.none()) {
-            writer.writeString("π")
-            writer.writeOpenBracket()
-            writer.writeProjection(projection, false)
-            writer.writeCloseBracket()
+            generator.writeString("π")
+            generator.writeOpenBracket()
+            generator.writeProjection(projection, false)
+            generator.writeCloseBracket()
         }
 
-        writer.writeOpenBracket()
-        writer.writeRelation(selection.relation)
+        generator.writeOpenBracket()
+        generator.writeRelation(selection.relation)
 
         when (selection) {
             is Join<out Relation, out Relation> -> {
                 if (selection.type == Join.JoinType.NATURAL) {
-                    writer.writeString(" ⋈ ")
-                    writer.writeRelation(selection.relation2)
+                    generator.writeString(" ⋈ ")
+                    generator.writeRelation(selection.relation2)
                 } else {
                     if (selection.type == Join.JoinType.OUTER) {
-                        writer.writeString(" OUTER")
+                        generator.writeString(" OUTER")
                     }
-                    writer.writeString(" ⋈")
+                    generator.writeString(" ⋈")
                     val condition = selection.condition
                     if (condition != null) {
-                        writer.writeExpr(condition, true)
+                        generator.writeExpr(condition, true)
                     }
-                    writer.writeString(" ")
-                    writer.writeRelation(selection.relation2)
+                    generator.writeString(" ")
+                    generator.writeRelation(selection.relation2)
                 }
             }
         }
 
-        writer.writeCloseBracket()
+        generator.writeCloseBracket()
     }
 
 }

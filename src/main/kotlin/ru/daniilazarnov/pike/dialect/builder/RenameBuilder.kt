@@ -2,21 +2,21 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.update.Rename
 import ru.daniilazarnov.pike.dialect.Builder
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 class RenameBuilder : Builder<Rename<*>> {
 
-    override fun build(ast: Rename<*>, writer: Writer) {
-        writer.writeString("ρ")
-        writer.writeOpenBracket()
-        writer.writeProjection(ast.properties, false)
-        writer.writeString(" -> ")
-        writer.writeStrings(ast.newNames)
-        writer.writeCloseBracket()
+    override fun build(ast: Rename<*>, generator: Generator) {
+        generator.writeString("ρ")
+        generator.writeOpenBracket()
+        generator.writeProjection(ast.properties, false)
+        generator.writeString(" -> ")
+        generator.writeStrings(ast.newNames)
+        generator.writeCloseBracket()
 
-        writer.writeOpenBracket()
-        writer.writeRelation(ast.relation)
-        writer.writeCloseBracket()
+        generator.writeOpenBracket()
+        generator.writeRelation(ast.relation)
+        generator.writeCloseBracket()
     }
 
 }

@@ -2,16 +2,16 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.math.Intersection
 import ru.daniilazarnov.pike.dialect.Builder
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 class IntersectionBuilder : Builder<Intersection<*, *>> {
 
-    override fun build(ast: Intersection<*, *>, writer: Writer) {
-        writer.writeOpenBracket()
-        writer.writeProjection(ast.projection1)
-        writer.writeString(" ∩ ")
-        writer.writeProjection(ast.projection2)
-        writer.writeCloseBracket()
+    override fun build(ast: Intersection<*, *>, generator: Generator) {
+        generator.writeOpenBracket()
+        generator.writeProjection(ast.projection1)
+        generator.writeString(" ∩ ")
+        generator.writeProjection(ast.projection2)
+        generator.writeCloseBracket()
     }
 
 }

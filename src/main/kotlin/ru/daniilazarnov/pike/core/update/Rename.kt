@@ -2,7 +2,7 @@ package ru.daniilazarnov.pike.core.update
 
 import ru.daniilazarnov.pike.core.Build
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 class Rename<R : Relation>(
         val relation: R,
@@ -19,9 +19,9 @@ class Rename<R : Relation>(
         }
     }
 
-    override fun build(writer: Writer): String {
-        writer.factory.renameBuilder().build(this, writer)
-        return writer.toString()
+    override fun build(generator: Generator): String {
+        generator.factory.renameBuilder().build(this, generator)
+        return generator.toString()
     }
 
 }

@@ -30,7 +30,7 @@ class ProjectionBuilderTest {
     @Test
     fun `test selection`() {
         val expected = "σ(age ≥ 34)(Person)"
-        val result = selection(Person, Person.age.gte(34)).build(Writer())
+        val result = selection(Person, Person.age.gte(34)).build(Generator())
 
         assertEquals(expected, result)
     }
@@ -40,7 +40,7 @@ class ProjectionBuilderTest {
         val expected = "π(age, weight)(Person)"
         val result = selection(Person)
                 .projection(Person.age..Person.weight)
-                .build(Writer())
+                .build(Generator())
 
         assertEquals(expected, result)
     }
@@ -50,7 +50,7 @@ class ProjectionBuilderTest {
         val expected = "σ(age ≥ 34)π(age, weight)(Person)"
         val result = selection(Person, Person.age.gte(34))
                 .projection(Person.age..Person.weight)
-                .build(Writer())
+                .build(Generator())
 
         assertEquals(expected, result)
     }
@@ -58,7 +58,7 @@ class ProjectionBuilderTest {
     @Test
     fun `test natural join`() {
         val expected = "(Person ⋈ Address)"
-        val result = selection(Person).naturalJoin(Address).build(Writer())
+        val result = selection(Person).naturalJoin(Address).build(Generator())
 
         assertEquals(expected, result)
     }
@@ -68,7 +68,7 @@ class ProjectionBuilderTest {
         val expected = "(Person ⋈(Person.id = Address.id) Address)"
         val result = selection(Person)
                 .join(Address, Person.id.eq(Address.id))
-                .build(Writer())
+                .build(Generator())
 
 
         assertEquals(expected, result)
@@ -80,7 +80,7 @@ class ProjectionBuilderTest {
         val result = selection(Person)
                 .join(Address, Person.id.eq(Address.id))
                 .join(Contact, Person.id.eq(Contact.id))
-                .build(Writer())
+                .build(Generator())
 
         assertEquals(expected, result)
     }
@@ -88,7 +88,7 @@ class ProjectionBuilderTest {
     @Test
     fun `test union`() {
         val expected = "((Person) ∪ (Person))"
-        val result = selection(Person).union(selection(Person)).build(Writer())
+        val result = selection(Person).union(selection(Person)).build(Generator())
 
         assertEquals(expected, result)
     }

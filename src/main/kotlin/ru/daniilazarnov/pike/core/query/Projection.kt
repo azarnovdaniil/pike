@@ -6,7 +6,7 @@ import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.math.Difference
 import ru.daniilazarnov.pike.core.math.Intersection
 import ru.daniilazarnov.pike.core.math.Union
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 class Projection<R : Relation>(
         val projection: Iterable<PropertyIterator<R>>,
@@ -24,9 +24,9 @@ class Projection<R : Relation>(
         return Difference(this, projection2)
     }
 
-    override fun build(writer: Writer): String {
-        writer.factory.projectionBuilder().build(this, writer)
-        return writer.toString()
+    override fun build(generator: Generator): String {
+        generator.factory.projectionBuilder().build(this, generator)
+        return generator.toString()
     }
 
 }

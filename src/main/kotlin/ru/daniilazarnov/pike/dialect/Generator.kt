@@ -5,7 +5,7 @@ import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.query.Projection
 
-open class Writer {
+open class Generator {
 
     val factory: BuilderFactory = BuilderFactory()
 

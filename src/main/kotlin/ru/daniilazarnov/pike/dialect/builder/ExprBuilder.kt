@@ -2,78 +2,78 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.*
 import ru.daniilazarnov.pike.dialect.Builder
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
 
-    override fun build(ast: Expr<*>, writer: Writer) {
+    override fun build(ast: Expr<*>, generator: Generator) {
         when (ast) {
 
             is NotExpr<*> -> {
-                writer.writeString("(NOT ")
-                writer.writeAny(ast.param, fullFormat)
-                writer.writeCloseBracket()
+                generator.writeString("(NOT ")
+                generator.writeAny(ast.param, fullFormat)
+                generator.writeCloseBracket()
             }
 
             is AndExpr<*> -> {
-                writer.writeOpenBracket()
-                writer.writeAny(ast.left, fullFormat)
-                writer.writeString(" AND ")
-                writer.writeAny(ast.right, fullFormat)
-                writer.writeCloseBracket()
+                generator.writeOpenBracket()
+                generator.writeAny(ast.left, fullFormat)
+                generator.writeString(" AND ")
+                generator.writeAny(ast.right, fullFormat)
+                generator.writeCloseBracket()
             }
 
             is OrExpr<*> -> {
-                writer.writeOpenBracket()
-                writer.writeAny(ast.left, fullFormat)
-                writer.writeString(" OR ")
-                writer.writeAny(ast.right, fullFormat)
-                writer.writeCloseBracket()
+                generator.writeOpenBracket()
+                generator.writeAny(ast.left, fullFormat)
+                generator.writeString(" OR ")
+                generator.writeAny(ast.right, fullFormat)
+                generator.writeCloseBracket()
             }
 
             is EqExpr<*> -> {
-                writer.writeOpenBracket()
+                generator.writeOpenBracket()
                 if (ast.right != null) {
-                    writer.writeAny(ast.left, fullFormat)
-                    writer.writeString(" = ")
-                    writer.writeAny(ast.right, fullFormat)
+                    generator.writeAny(ast.left, fullFormat)
+                    generator.writeString(" = ")
+                    generator.writeAny(ast.right, fullFormat)
                 } else {
-                    writer.writeAny(ast.left, fullFormat)
-                    writer.writeString(" IS NULL")
+                    generator.writeAny(ast.left, fullFormat)
+                    generator.writeString(" IS NULL")
                 }
-                writer.writeCloseBracket()
+                generator.writeCloseBracket()
             }
 
             is LtExpr<*> -> {
-                writer.writeOpenBracket()
-                writer.writeAny(ast.left, fullFormat)
-                writer.writeString(" < ")
-                writer.writeAny(ast.right, fullFormat)
-                writer.writeCloseBracket()
+                generator.writeOpenBracket()
+                generator.writeAny(ast.left, fullFormat)
+                generator.writeString(" < ")
+                generator.writeAny(ast.right, fullFormat)
+                generator.writeCloseBracket()
             }
 
             is LteExpr<*> -> {
-                writer.writeOpenBracket()
-                writer.writeAny(ast.left, fullFormat)
-                writer.writeString(" <= ")
-                writer.writeAny(ast.right, fullFormat)
-                writer.writeCloseBracket()
+                generator.writeOpenBracket()
+                generator.writeAny(ast.left, fullFormat)
+                generator.writeString(" <= ")
+                generator.writeAny(ast.right, fullFormat)
+                generator.writeCloseBracket()
             }
 
             is GtExpr<*> -> {
-                writer.writeOpenBracket()
-                writer.writeAny(ast.left, fullFormat)
-                writer.writeString(" > ")
-                writer.writeAny(ast.right, fullFormat)
-                writer.writeCloseBracket()
+                generator.writeOpenBracket()
+                generator.writeAny(ast.left, fullFormat)
+                generator.writeString(" > ")
+                generator.writeAny(ast.right, fullFormat)
+                generator.writeCloseBracket()
             }
 
             is GteExpr<*> -> {
-                writer.writeOpenBracket()
-                writer.writeAny(ast.left, fullFormat)
-                writer.writeString(" ≥ ")
-                writer.writeAny(ast.right, fullFormat)
-                writer.writeCloseBracket()
+                generator.writeOpenBracket()
+                generator.writeAny(ast.left, fullFormat)
+                generator.writeString(" ≥ ")
+                generator.writeAny(ast.right, fullFormat)
+                generator.writeCloseBracket()
             }
         }
     }

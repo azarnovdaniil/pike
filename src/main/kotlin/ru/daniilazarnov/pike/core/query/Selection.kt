@@ -5,7 +5,7 @@ import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.math.Union
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 open class Selection<R : Relation>(
         val relation: R,
@@ -41,9 +41,9 @@ open class Selection<R : Relation>(
         return Projection(projection = projection, selection = this)
     }
 
-    override fun build(writer: Writer): String {
-        writer.factory.projectionBuilder().build(this.projection(listOf()), writer)
-        return writer.toString()
+    override fun build(generator: Generator): String {
+        generator.factory.projectionBuilder().build(this.projection(listOf()), generator)
+        return generator.toString()
     }
 
 }

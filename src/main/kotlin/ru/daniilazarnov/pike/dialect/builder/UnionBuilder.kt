@@ -2,16 +2,16 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.math.Union
 import ru.daniilazarnov.pike.dialect.Builder
-import ru.daniilazarnov.pike.dialect.Writer
+import ru.daniilazarnov.pike.dialect.Generator
 
 class UnionBuilder : Builder<Union<*, *>> {
 
-    override fun build(ast: Union<*, *>, writer: Writer) {
-        writer.writeString("(")
-        writer.writeProjection(ast.projection1)
-        writer.writeString(" ∪ ")
-        writer.writeProjection(ast.projection2)
-        writer.writeString(")")
+    override fun build(ast: Union<*, *>, generator: Generator) {
+        generator.writeString("(")
+        generator.writeProjection(ast.projection1)
+        generator.writeString(" ∪ ")
+        generator.writeProjection(ast.projection2)
+        generator.writeString(")")
     }
 
 }
