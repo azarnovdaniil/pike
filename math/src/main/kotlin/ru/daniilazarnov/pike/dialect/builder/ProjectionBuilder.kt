@@ -6,7 +6,7 @@ import ru.daniilazarnov.pike.core.query.Projection
 import ru.daniilazarnov.pike.dialect.Builder
 import ru.daniilazarnov.pike.dialect.Generator
 
-open class ProjectionBuilder : Builder<Projection<*>> {
+object ProjectionBuilder : Builder<Projection<*>> {
 
     override fun build(ast: Projection<*>, generator: Generator) {
         val selection = ast.selection

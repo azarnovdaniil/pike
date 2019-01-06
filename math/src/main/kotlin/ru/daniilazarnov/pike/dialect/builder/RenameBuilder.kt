@@ -4,7 +4,7 @@ import ru.daniilazarnov.pike.core.update.Rename
 import ru.daniilazarnov.pike.dialect.Builder
 import ru.daniilazarnov.pike.dialect.Generator
 
-class RenameBuilder : Builder<Rename<*>> {
+object RenameBuilder : Builder<Rename<*>> {
 
     override fun build(ast: Rename<*>, generator: Generator) {
         generator.writeString("ρ")

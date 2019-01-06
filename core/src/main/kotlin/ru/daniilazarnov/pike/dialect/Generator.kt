@@ -5,9 +5,9 @@ import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.query.Projection
 
-open class Generator {
+abstract class Generator {
 
-    val factory: BuilderFactory = BuilderFactory()
+    abstract val factory: BuilderFactory
 
     private val builder = StringBuilder()
 
