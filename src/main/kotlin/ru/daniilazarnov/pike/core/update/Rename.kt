@@ -1,13 +1,13 @@
 package ru.daniilazarnov.pike.core.update
 
-import ru.daniilazarnov.pike.module.RenameBuilder
+import ru.daniilazarnov.pike.core.Build
 import ru.daniilazarnov.pike.core.data.Relation
+import ru.daniilazarnov.pike.dialect.Writer
 
 class Rename<R : Relation>(
         val relation: R,
         val properties: Iterable<Relation.Property<R, *>>,
-        val newNames: Iterable<String>
-) {
+        val newNames: Iterable<String>) : Build {
 
     companion object {
         fun <R : Relation, P : Relation.Property<R, *>> rename(relation: R, property: P, newName: String): Rename<R> {
@@ -19,7 +19,9 @@ class Rename<R : Relation>(
         }
     }
 
-    fun build(): String {
-        return RenameBuilder.build(this)
+    override fun build(writer: Writer): String {
+        writer.factory.renameBuilder().build(this, writer)
+        return writer.toString()
     }
+
 }

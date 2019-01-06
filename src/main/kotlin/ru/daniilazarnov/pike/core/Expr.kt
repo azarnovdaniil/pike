@@ -1,4 +1,7 @@
-package ru.daniilazarnov.pike.core.data
+package ru.daniilazarnov.pike.core
+
+import ru.daniilazarnov.pike.core.data.Relation
+import ru.daniilazarnov.pike.core.data.Type
 
 interface Expr<out Relation>
 

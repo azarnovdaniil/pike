@@ -1,14 +1,16 @@
 package ru.daniilazarnov.pike.core.query
 
-import ru.daniilazarnov.pike.core.data.Expr
+import ru.daniilazarnov.pike.core.Build
+import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.math.Union
+import ru.daniilazarnov.pike.dialect.BuilderFactory
+import ru.daniilazarnov.pike.dialect.Writer
 
 open class Selection<R : Relation>(
         val relation: R,
-        val expr: Expr<R>?
-) {
+        val expr: Expr<R>?) : Build {
 
     companion object {
         fun <R : Relation> selection(relation: R): Selection<R> {
@@ -28,11 +30,11 @@ open class Selection<R : Relation>(
         return Join(this, relation2, Join.JoinType.NATURAL, null)
     }
 
-    infix fun <P : Projection<R>> union(projection: P): Union<R, Projection<R>> {
+    fun <P : Projection<R>> union(projection: P): Union<R, Projection<R>> {
         return Union(Projection(projection = listOf(), selection = this), projection)
     }
 
-    infix fun <S : Selection<R>> union(selection: S): Union<R, Projection<R>> {
+    fun <S : Selection<R>> union(selection: S): Union<R, Projection<R>> {
         return union(Projection(projection = listOf(), selection = selection))
     }
 
@@ -40,8 +42,9 @@ open class Selection<R : Relation>(
         return Projection(projection = projection, selection = this)
     }
 
-    fun build(): String {
-        return Projection(projection = listOf(), selection = this).build()
+    override fun build(writer: Writer): String {
+        writer.factory.projectionBuilder().build(this.projection(listOf()), writer)
+        return writer.toString()
     }
 
 }

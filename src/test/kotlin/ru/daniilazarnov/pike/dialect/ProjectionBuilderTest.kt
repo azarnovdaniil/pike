@@ -1,8 +1,10 @@
-package ru.daniilazarnov.pike.module
+package ru.daniilazarnov.pike.dialect
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.*
+import ru.daniilazarnov.pike.core.eq
+import ru.daniilazarnov.pike.core.gte
 import ru.daniilazarnov.pike.core.query.Selection.Companion.selection
 
 class ProjectionBuilderTest {
@@ -28,7 +30,7 @@ class ProjectionBuilderTest {
     @Test
     fun `test selection`() {
         val expected = "σ(age ≥ 34)(Person)"
-        val result = selection(Person, Person.age.gte(34)).build()
+        val result = selection(Person, Person.age.gte(34)).build(Writer())
 
         assertEquals(expected, result)
     }
@@ -38,7 +40,7 @@ class ProjectionBuilderTest {
         val expected = "π(age, weight)(Person)"
         val result = selection(Person)
                 .projection(Person.age..Person.weight)
-                .build()
+                .build(Writer())
 
         assertEquals(expected, result)
     }
@@ -48,7 +50,7 @@ class ProjectionBuilderTest {
         val expected = "σ(age ≥ 34)π(age, weight)(Person)"
         val result = selection(Person, Person.age.gte(34))
                 .projection(Person.age..Person.weight)
-                .build()
+                .build(Writer())
 
         assertEquals(expected, result)
     }
@@ -56,7 +58,7 @@ class ProjectionBuilderTest {
     @Test
     fun `test natural join`() {
         val expected = "(Person ⋈ Address)"
-        val result = selection(Person).naturalJoin(Address).build()
+        val result = selection(Person).naturalJoin(Address).build(Writer())
 
         assertEquals(expected, result)
     }
@@ -66,7 +68,8 @@ class ProjectionBuilderTest {
         val expected = "(Person ⋈(Person.id = Address.id) Address)"
         val result = selection(Person)
                 .join(Address, Person.id.eq(Address.id))
-                .build()
+                .build(Writer())
+
 
         assertEquals(expected, result)
     }
@@ -77,7 +80,7 @@ class ProjectionBuilderTest {
         val result = selection(Person)
                 .join(Address, Person.id.eq(Address.id))
                 .join(Contact, Person.id.eq(Contact.id))
-                .build()
+                .build(Writer())
 
         assertEquals(expected, result)
     }
@@ -85,9 +88,7 @@ class ProjectionBuilderTest {
     @Test
     fun `test union`() {
         val expected = "((Person) ∪ (Person))"
-        val result = selection(Person)
-                .union(selection(Person))
-                .build()
+        val result = selection(Person).union(selection(Person)).build(Writer())
 
         assertEquals(expected, result)
     }

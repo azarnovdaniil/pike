@@ -1,4 +1,4 @@
-package ru.daniilazarnov.pike.module
+package ru.daniilazarnov.pike.dialect
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -21,7 +21,7 @@ internal class RenameBuilderTest {
     @Test
     fun `test rename`() {
         val expected = "ρ(age -> old)(Person)"
-        val result = Rename.rename(Person, Person.age, "old").build()
+        val result = Rename.rename(Person, Person.age, "old").build(Writer())
 
         assertEquals(expected, result)
     }
@@ -29,7 +29,7 @@ internal class RenameBuilderTest {
     @Test
     fun `test renames`() {
         val expected = "ρ(age, weight -> old, fat)(Person)"
-        val result = Rename.rename(Person, Person.age..Person.weight, listOf("old", "fat")).build()
+        val result = Rename.rename(Person, Person.age..Person.weight, listOf("old", "fat")).build(Writer())
 
         assertEquals(expected, result)
     }

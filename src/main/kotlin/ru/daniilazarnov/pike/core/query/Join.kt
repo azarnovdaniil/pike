@@ -1,6 +1,6 @@
 package ru.daniilazarnov.pike.core.query
 
-import ru.daniilazarnov.pike.core.data.Expr
+import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.Relation
 
 class Join<R : Relation, R2 : Relation>(
