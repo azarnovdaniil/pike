@@ -12,6 +12,7 @@ import ru.daniilazarnov.pike.core.update.Rename
 interface BuilderFactory {
 
     fun exprBuilder(fullFormat: Boolean): Builder<Expr<*>>
+
     fun differenceBuilder(): Builder<Difference<*, *>>
     fun intersectionBuilder(): Builder<Intersection<*, *>>
     fun projectionBuilder(): Builder<Projection<*>>

@@ -13,6 +13,7 @@ import ru.daniilazarnov.pike.dialect.builder.*
 object MathBuilderFactory : BuilderFactory {
 
     override fun exprBuilder(fullFormat: Boolean): Builder<Expr<*>> = ExprBuilder(fullFormat)
+
     override fun differenceBuilder(): Builder<Difference<*, *>> = DifferenceBuilder
     override fun intersectionBuilder(): Builder<Intersection<*, *>> = IntersectionBuilder
     override fun projectionBuilder(): Builder<Projection<*>> = ProjectionBuilder
