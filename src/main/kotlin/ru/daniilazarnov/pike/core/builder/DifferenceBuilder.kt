@@ -10,9 +10,9 @@ object DifferenceBuilder {
         val builder = StringBuilder()
 
         builder.append("(")
-        builder.append(ProjectionBuilder.build(statement.projection1, false))
+        builder.append(ProjectionBuilder.build(statement.projection1))
         builder.append(" - ")
-        builder.append(ProjectionBuilder.build(statement.projection2, false))
+        builder.append(ProjectionBuilder.build(statement.projection2))
         builder.append(")")
 
         return builder.toString()

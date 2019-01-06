@@ -66,7 +66,6 @@ class ProjectionBuilderTest {
         val expected = "(Person ⋈(Person.id = Address.id) Address)"
         val result = selection(Person)
                 .join(Address, Person.id.eq(Address.id))
-                .join(Contact, Person.id.eq(Contact.id))
                 .build()
 
         assertEquals(expected, result)
