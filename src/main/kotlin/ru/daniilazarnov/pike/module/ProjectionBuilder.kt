@@ -1,10 +1,10 @@
-package ru.daniilazarnov.pike.core.builder
+package ru.daniilazarnov.pike.module
 
-import ru.daniilazarnov.pike.core.builder.Util.appendProjection
-import ru.daniilazarnov.pike.core.builder.Util.appendRelationName
+import ru.daniilazarnov.pike.module.Util.appendProjection
+import ru.daniilazarnov.pike.module.Util.appendRelationName
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.query.Join
-import ru.daniilazarnov.pike.query.Projection
+import ru.daniilazarnov.pike.core.query.Join
+import ru.daniilazarnov.pike.core.query.Projection
 
 object ProjectionBuilder {
 

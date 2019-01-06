@@ -1,8 +1,8 @@
-package ru.daniilazarnov.pike.core.builder
+package ru.daniilazarnov.pike.module
 
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.query.Projection
-import ru.daniilazarnov.pike.query.Union
+import ru.daniilazarnov.pike.core.query.Projection
+import ru.daniilazarnov.pike.core.math.Union
 
 class UnionModule<R : Relation> : Module<Union<R, out Projection<R>>> {
 

@@ -1,11 +1,11 @@
-package ru.daniilazarnov.pike.core.builder
+package ru.daniilazarnov.pike.module
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.data.rangeTo
-import ru.daniilazarnov.pike.update.Rename
+import ru.daniilazarnov.pike.core.update.Rename
 
 internal class RenameBuilderTest {
 

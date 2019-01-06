@@ -1,4 +1,4 @@
-package ru.daniilazarnov.pike.core.builder
+package ru.daniilazarnov.pike.module
 
 interface Module<A : Any> {
 

@@ -1,9 +1,9 @@
-package ru.daniilazarnov.pike.dialect
+package ru.daniilazarnov.pike.module
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.*
-import ru.daniilazarnov.pike.query.Selection.Companion.selection
+import ru.daniilazarnov.pike.core.query.Selection.Companion.selection
 
 class ProjectionBuilderTest {
     private object Person : Relation("Person") {

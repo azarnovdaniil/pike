@@ -1,7 +1,7 @@
-package ru.daniilazarnov.pike.core.builder
+package ru.daniilazarnov.pike.module
 
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.update.Rename
+import ru.daniilazarnov.pike.core.update.Rename
 
 object RenameBuilder {
 

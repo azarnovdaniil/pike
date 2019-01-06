@@ -1,13 +1,14 @@
-package ru.daniilazarnov.pike.query
+package ru.daniilazarnov.pike.core.query
 
 import ru.daniilazarnov.pike.core.data.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
+import ru.daniilazarnov.pike.core.math.Union
 
 open class Selection<R : Relation>(
         val relation: R,
         val expr: Expr<R>?
-) : Build {
+) {
 
     companion object {
         fun <R : Relation> selection(relation: R): Selection<R> {
@@ -39,7 +40,7 @@ open class Selection<R : Relation>(
         return Projection(projection = projection, selection = this)
     }
 
-    override fun build(): String {
+    fun build(): String {
         return Projection(projection = listOf(), selection = this).build()
     }
 

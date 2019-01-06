@@ -1,6 +1,6 @@
-package ru.daniilazarnov.pike.core.builder
+package ru.daniilazarnov.pike.module
 
-import ru.daniilazarnov.pike.core.builder.Util.appendValue
+import ru.daniilazarnov.pike.module.Util.appendValue
 import ru.daniilazarnov.pike.core.data.*
 
 object ExprBuilder {

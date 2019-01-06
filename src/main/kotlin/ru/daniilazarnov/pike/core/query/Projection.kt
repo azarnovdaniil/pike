@@ -1,12 +1,15 @@
-package ru.daniilazarnov.pike.query
+package ru.daniilazarnov.pike.core.query
 
-import ru.daniilazarnov.pike.core.builder.ProjectionBuilder
+import ru.daniilazarnov.pike.module.ProjectionBuilder
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
+import ru.daniilazarnov.pike.core.math.Difference
+import ru.daniilazarnov.pike.core.math.Intersection
+import ru.daniilazarnov.pike.core.math.Union
 
 class Projection<R : Relation>(
         val projection: Iterable<PropertyIterator<R>>,
-        val selection: Selection<R>) : Build {
+        val selection: Selection<R>) {
 
     infix fun <P : Projection<R>> union(projection2: P): Union<R, Projection<R>> {
         return Union(this, projection2)
@@ -20,7 +23,7 @@ class Projection<R : Relation>(
         return Difference(this, projection2)
     }
 
-    override fun build(): String {
+    fun build(): String {
         return ProjectionBuilder.build(this)
     }
 

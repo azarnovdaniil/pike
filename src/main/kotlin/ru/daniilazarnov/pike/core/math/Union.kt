@@ -1,14 +1,15 @@
-package ru.daniilazarnov.pike.query
+package ru.daniilazarnov.pike.core.math
 
-import ru.daniilazarnov.pike.core.builder.UnionModule
+import ru.daniilazarnov.pike.module.UnionModule
 import ru.daniilazarnov.pike.core.data.Relation
+import ru.daniilazarnov.pike.core.query.Projection
 
 class Union<R : Relation, P : Projection<R>>(
         val projection1: P,
         val projection2: P
-) : Build {
+) {
 
-    override fun build(): String {
+    fun build(): String {
         return UnionModule<R>().build(this)
     }
 

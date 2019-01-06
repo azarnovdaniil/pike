@@ -1,4 +1,4 @@
-package ru.daniilazarnov.pike.query
+package ru.daniilazarnov.pike.core.query
 
 import ru.daniilazarnov.pike.core.data.Expr
 import ru.daniilazarnov.pike.core.data.Relation
