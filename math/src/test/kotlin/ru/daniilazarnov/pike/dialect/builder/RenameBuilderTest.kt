@@ -1,4 +1,4 @@
-package ru.daniilazarnov.pike.dialect
+package ru.daniilazarnov.pike.dialect.builder
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -6,6 +6,7 @@ import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.data.rangeTo
 import ru.daniilazarnov.pike.core.update.Rename
+import ru.daniilazarnov.pike.dialect.MathGenerator
 
 internal class RenameBuilderTest {
 
