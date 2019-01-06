@@ -66,9 +66,9 @@ class ProjectionBuilderTest {
 
     @Test
     fun `test join`() {
-        val expected = "(Person ⋈(Person.id = Address.id) Address)"
+        val expected = "(Person ⋈(Person.address = Address.id) Address)"
         val result = selection(Person)
-                .join(Address, Person.id.eq(Address.id))
+                .join(Address, Person.address.eq(Address.id))
                 .build(MathGenerator())
 
 
@@ -77,10 +77,10 @@ class ProjectionBuilderTest {
 
     @Test
     fun `test double join`() {
-        val expected = "(Person ⋈(Person.id = Address.id) Address)"
+        val expected = "(Person ⋈(Person.address = Address.id) Address) ⋈(Person.phone = Address.id) Contact)"
         val result = selection(Person)
-                .join(Address, Person.id.eq(Address.id))
-                .join(Contact, Person.id.eq(Contact.id))
+                .join(Contact, Person.phone.eq(Contact.id))
+                .join(Address, Person.address.eq(Address.id))
                 .build(MathGenerator())
 
         assertEquals(expected, result)

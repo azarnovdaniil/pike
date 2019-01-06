@@ -3,7 +3,9 @@ package ru.daniilazarnov.pike.dialect
 import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
+import ru.daniilazarnov.pike.core.query.Join
 import ru.daniilazarnov.pike.core.query.Projection
+import ru.daniilazarnov.pike.core.query.Selection
 
 abstract class Generator {
 
@@ -29,6 +31,14 @@ abstract class Generator {
 
     fun writeProjection(projection: Projection<*>) {
         factory.projectionBuilder().build(projection, this)
+    }
+
+    fun writeSelection(selection: Selection<*>) {
+        factory.selectionBuilder().build(selection, this)
+    }
+
+    fun writeJoin(join: Join<*, *>) {
+        factory.joinBuilder().build(join, this)
     }
 
     fun writeExpr(expr: Expr<*>, fullFormat: Boolean = false) {

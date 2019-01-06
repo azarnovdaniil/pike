@@ -16,10 +16,11 @@ class Join<R : Relation, R2 : Relation>(
         NATURAL
     }
 
-    lateinit var join: Join<R, out Relation>
+    var join: Join<R, out Relation>? = null
 
     override fun <R3 : Relation> join(relation2: R3, expr: Expr<R3>): Join<R, out Relation> {
-        join = Join(this, relation2, JoinType.INNER, expr)
+        val join = Join(this, relation2, JoinType.INNER, expr)
+        this.join = join
 
         return join
     }
