@@ -1,20 +1,19 @@
 package ru.daniilazarnov.pike.core.builder
 
-import ru.daniilazarnov.pike.core.builder.PredicateBuilder.appendPredicate
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.builder.Util.appendProjection
 import ru.daniilazarnov.pike.core.builder.Util.appendRelationName
 import ru.daniilazarnov.pike.query.Projection
 
-object SelectionBuilder {
+object ProjectionBuilder {
 
-    fun <R : Relation> build(statement: Projection<R>): String {
+    fun <R : Relation> build(statement: Projection<R>, fullFormat: Boolean = true): String {
         val builder = StringBuilder()
 
         val expr = statement.selection.expr
         if (expr != null) {
             builder.append("σ")
-            appendPredicate(builder, expr, false)
+            ExprBuilder.build(builder, expr, false)
         }
         val projection = statement.projection
         if (!projection.none()) {
@@ -42,25 +41,6 @@ object SelectionBuilder {
 //        builder.append(")")
 
         builder.append(")")
-
-
-        val group = statement.groupClause
-        if (group != null) {
-            builder.append(" GROUP BY ")
-            appendProjection(builder, group.projection, false)
-        }
-
-        val having = statement.havingClause
-        if (having != null) {
-            builder.append(" HAVING ")
-            appendPredicate(builder, having.expr, false)
-        }
-
-        val offset = statement.offsetClause
-        if (offset != null) {
-            builder.append(" OFFSET ")
-            builder.append(offset.offset)
-        }
 
         return builder.toString()
     }

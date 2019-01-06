@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.*
 import ru.daniilazarnov.pike.query.Selection.Companion.selection
 
-class SelectionBuilderTest {
+class ProjectionBuilderTest {
     private object Person : Relation("Person") {
         val id = Property<Person, Type.Id>("id")
         val name = Property<Person, Type.Str>("name")
@@ -54,7 +54,7 @@ class SelectionBuilderTest {
     }
 
     @Test
-    fun `natural join`() {
+    fun `test natural join`() {
         val expected = "(Person ⋈ Address)"
         val result = selection(Person).naturalJoin(Address).build()
 
@@ -62,7 +62,7 @@ class SelectionBuilderTest {
     }
 
     @Test
-    fun `join`() {
+    fun `test join`() {
         val expected = "(Person ⋈(Person.id = Address.id) Address)"
         val result = selection(Person)
                 .join(Address, Person.id.eq(Address.id))
@@ -73,7 +73,7 @@ class SelectionBuilderTest {
     }
 
     @Test
-    fun `union`() {
+    fun `test union`() {
         val expected = "((Person) ∪ (Person))"
         val result = selection(Person)
                 .union(selection(Person))

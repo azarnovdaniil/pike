@@ -1,9 +1,14 @@
 package ru.daniilazarnov.pike.update
 
+import ru.daniilazarnov.pike.core.builder.RenameBuilder
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.query.Build
 
-class Rename<R : Relation>(val relation: R, properties: Iterable<Relation.Property<R, *>>, newNames: Iterable<String>) : Build {
+class Rename<R : Relation>(
+        val relation: R,
+        val properties: Iterable<Relation.Property<R, *>>,
+        val newNames: Iterable<String>
+) : Build {
 
     companion object {
         fun <R : Relation, P : Relation.Property<R, *>> rename(relation: R, property: P, newName: String): Rename<R> {
@@ -16,6 +21,6 @@ class Rename<R : Relation>(val relation: R, properties: Iterable<Relation.Proper
     }
 
     override fun build(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return RenameBuilder.build(this)
     }
 }

@@ -3,11 +3,15 @@ package ru.daniilazarnov.pike.core.builder
 import ru.daniilazarnov.pike.core.builder.Util.appendValue
 import ru.daniilazarnov.pike.core.data.*
 
-object PredicateBuilder {
+object ExprBuilder {
 
-    fun appendPredicate(builder: StringBuilder, value: Any?, fullFormat: Boolean = true) {
+    fun build(builder: StringBuilder, value: Expr<Relation>, fullFormat: Boolean = true) {
+        appendPredicate(builder, value, fullFormat)
+    }
+
+    private fun appendPredicate(builder: StringBuilder, value: Any?, fullFormat: Boolean = true) {
         when (value) {
-            is Relation.Property<*,*> -> if (fullFormat) {
+            is Relation.Property<*, *> -> if (fullFormat) {
                 Util.appendFullPropertyName(builder, value)
             } else {
                 Util.appendShortPropertyName(builder, value)

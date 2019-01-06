@@ -24,4 +24,3 @@ operator fun <R : Relation> Relation.Property<R, *>.rangeTo(property: Relation.P
 operator fun <R : Relation> Iterable<Relation.Property<R, *>>.rangeTo(property: Relation.Property<R, *>): Iterable<Relation.Property<R, *>> {
     return this.plusElement(property)
 }
-

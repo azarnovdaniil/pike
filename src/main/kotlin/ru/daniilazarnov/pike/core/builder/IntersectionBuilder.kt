@@ -10,9 +10,9 @@ object IntersectionBuilder {
         val builder = StringBuilder()
 
         builder.append("(")
-        builder.append(SelectionBuilder.build(statement.projection1))
+        builder.append(ProjectionBuilder.build(statement.projection1))
         builder.append(" ∩ ")
-        builder.append(SelectionBuilder.build(statement.projection2))
+        builder.append(ProjectionBuilder.build(statement.projection2))
         builder.append(")")
 
         return builder.toString()

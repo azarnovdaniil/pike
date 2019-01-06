@@ -27,6 +27,15 @@ object Util {
         }
     }
 
+    fun appendStrings(builder: StringBuilder, strings: Iterable<String>) {
+        var delim = ""
+        for (str in strings) {
+            builder.append(delim)
+            delim = ", "
+            builder.append(str)
+        }
+    }
+
     fun appendRelationName(builder: StringBuilder, relation: Relation) {
         builder.append("$relation")
     }

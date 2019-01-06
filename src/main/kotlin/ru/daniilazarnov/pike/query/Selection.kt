@@ -4,7 +4,10 @@ import ru.daniilazarnov.pike.core.data.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 
-open class Selection<R : Relation>(val relation: R, val expr: Expr<R>?) : Build {
+open class Selection<R : Relation>(
+        val relation: R,
+        val expr: Expr<R>?
+) : Build {
 
     companion object {
         fun <R : Relation> selection(relation: R): Selection<R> {
@@ -31,25 +34,6 @@ open class Selection<R : Relation>(val relation: R, val expr: Expr<R>?) : Build 
     infix fun <S : Selection<R>> union(selection: S): Union<R, Projection<R>> {
         return union(Projection(projection = listOf(), selection = selection))
     }
-
-//    inline fun groupBy(group: (R) -> Iterable<PropertyIterator<R>>): GroupClause<R> {
-//        return GroupClause(group(selection.relation), selection, this)
-//    }
-//
-//    inline fun orderBy(order: (R) -> Iterable<Ordering>): OrderClause<R> {
-//        return OrderClause(order(selection.relation), selection, this, null, null)
-//    }
-
-//    inline fun offset(offset: () -> Any): OffsetClause<R> {
-//        return OffsetClause(
-//                offset(),
-//                selection,
-//                this,
-//                null,
-//                null,
-//                null
-//        )
-//    }
 
     fun projection(projection: Iterable<PropertyIterator<R>>): Projection<R> {
         return Projection(projection = projection, selection = this)

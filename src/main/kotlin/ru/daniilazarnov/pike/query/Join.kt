@@ -24,33 +24,4 @@ class Join<R : Relation, R2 : Relation>(
         return join
     }
 
-//    inline fun groupBy(group: (R, R2) -> Iterable<PropertyIterator<R>>): Group2Clause<R, R2> {
-//        return Group2Clause(group(selection.relation, relation2), this, null)
-//    }
-//
-//    inline fun orderBy(order: (R, R2) -> Iterable<Ordering>): Order2Clause<R, R2> {
-//        return Order2Clause(order(selection.relation, relation2), this, null, null, null)
-//    }
-
-//    inline fun limit(limit: () -> Any): Limit2Clause<R, R2> {
-//        return Limit2Clause(
-//                limit(),
-//                this,
-//                null,
-//                null,
-//                null,
-//                null)
-//    }
-
-//    inline fun offset(offset: () -> String): Offset2Clause<R, R2> {
-//        return Offset2Clause(
-//                offset(),
-//                limit { "-1" },
-//                this,
-//                null,
-//                null,
-//                null,
-//                null)
-//    }
-
 }

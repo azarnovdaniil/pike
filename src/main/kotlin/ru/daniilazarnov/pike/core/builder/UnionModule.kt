@@ -4,15 +4,15 @@ import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.query.Projection
 import ru.daniilazarnov.pike.query.Union
 
-object UnionBuilder {
+class UnionModule<R : Relation> : Module<Union<R, out Projection<R>>> {
 
-    fun <T : Relation, S : Projection<T>> build(statement: Union<T, S>): String {
+    override fun build(ast: Union<R, out Projection<R>>): String {
         val builder = StringBuilder()
 
         builder.append("(")
-        builder.append(SelectionBuilder.build(statement.projection1))
+        builder.append(ProjectionBuilder.build(ast.projection1))
         builder.append(" ∪ ")
-        builder.append(SelectionBuilder.build(statement.projection2))
+        builder.append(ProjectionBuilder.build(ast.projection2))
         builder.append(")")
 
         return builder.toString()
