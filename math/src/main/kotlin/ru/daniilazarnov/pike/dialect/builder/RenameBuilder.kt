@@ -10,7 +10,7 @@ object RenameBuilder : Builder<Rename<*>> {
         generator.writeString("ρ")
         generator.writeOpenBracket()
         generator.writeProjection(ast.properties, false)
-        generator.writeString(" -> ")
+        generator.writeString(" / ")
         generator.writeStrings(ast.newNames)
         generator.writeCloseBracket()
 

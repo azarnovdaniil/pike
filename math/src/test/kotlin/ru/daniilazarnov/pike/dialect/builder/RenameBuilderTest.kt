@@ -21,7 +21,7 @@ internal class RenameBuilderTest {
 
     @Test
     fun `test rename`() {
-        val expected = "ρ(age -> old)(Person)"
+        val expected = "ρ(age / old)(Person)"
         val result = Rename.rename(Person, Person.age, "old").build(MathGenerator())
 
         assertEquals(expected, result)
@@ -29,7 +29,7 @@ internal class RenameBuilderTest {
 
     @Test
     fun `test renames`() {
-        val expected = "ρ(age, weight -> old, fat)(Person)"
+        val expected = "ρ(age, weight / old, fat)(Person)"
         val result = Rename.rename(Person, Person.age..Person.weight, listOf("old", "fat")).build(MathGenerator())
 
         assertEquals(expected, result)

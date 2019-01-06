@@ -10,7 +10,8 @@ class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
         when (ast) {
 
             is NotExpr<*> -> {
-                generator.writeString("(NOT ")
+                generator.writeOpenBracket()
+                generator.writeString("¬ ")
                 generator.writeAny(ast.param, fullFormat)
                 generator.writeCloseBracket()
             }
@@ -18,7 +19,7 @@ class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
             is AndExpr<*> -> {
                 generator.writeOpenBracket()
                 generator.writeAny(ast.left, fullFormat)
-                generator.writeString(" AND ")
+                generator.writeString(" ∧ ")
                 generator.writeAny(ast.right, fullFormat)
                 generator.writeCloseBracket()
             }
@@ -26,7 +27,7 @@ class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
             is OrExpr<*> -> {
                 generator.writeOpenBracket()
                 generator.writeAny(ast.left, fullFormat)
-                generator.writeString(" OR ")
+                generator.writeString(" ∨ ")
                 generator.writeAny(ast.right, fullFormat)
                 generator.writeCloseBracket()
             }
@@ -39,7 +40,7 @@ class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
                     generator.writeAny(ast.right, fullFormat)
                 } else {
                     generator.writeAny(ast.left, fullFormat)
-                    generator.writeString(" IS NULL")
+                    generator.writeString(" = null")
                 }
                 generator.writeCloseBracket()
             }
@@ -55,7 +56,7 @@ class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
             is LteExpr<*> -> {
                 generator.writeOpenBracket()
                 generator.writeAny(ast.left, fullFormat)
-                generator.writeString(" <= ")
+                generator.writeString(" ≤ ")
                 generator.writeAny(ast.right, fullFormat)
                 generator.writeCloseBracket()
             }
