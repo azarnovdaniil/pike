@@ -1,7 +1,6 @@
 package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.*
-import ru.daniilazarnov.pike.core.data.*
 import ru.daniilazarnov.pike.dialect.Builder
 import ru.daniilazarnov.pike.dialect.Writer
 
@@ -12,34 +11,34 @@ class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
 
             is NotExpr<*> -> {
                 writer.writeString("(NOT ")
-                appendPredicate(ast.param, writer)
+                writer.writeAny(ast.param, fullFormat)
                 writer.writeCloseBracket()
             }
 
             is AndExpr<*> -> {
                 writer.writeOpenBracket()
-                appendPredicate(ast.left, writer)
+                writer.writeAny(ast.left, fullFormat)
                 writer.writeString(" AND ")
-                appendPredicate(ast.right, writer)
+                writer.writeAny(ast.right, fullFormat)
                 writer.writeCloseBracket()
             }
 
             is OrExpr<*> -> {
                 writer.writeOpenBracket()
-                appendPredicate(ast.left, writer)
+                writer.writeAny(ast.left, fullFormat)
                 writer.writeString(" OR ")
-                appendPredicate(ast.right, writer)
+                writer.writeAny(ast.right, fullFormat)
                 writer.writeCloseBracket()
             }
 
             is EqExpr<*> -> {
                 writer.writeOpenBracket()
                 if (ast.right != null) {
-                    appendPredicate(ast.left, writer)
+                    writer.writeAny(ast.left, fullFormat)
                     writer.writeString(" = ")
-                    appendPredicate(ast.right, writer)
+                    writer.writeAny(ast.right, fullFormat)
                 } else {
-                    appendPredicate(ast.left, writer)
+                    writer.writeAny(ast.left, fullFormat)
                     writer.writeString(" IS NULL")
                 }
                 writer.writeCloseBracket()
@@ -47,51 +46,35 @@ class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
 
             is LtExpr<*> -> {
                 writer.writeOpenBracket()
-                appendPredicate(ast.left, writer)
+                writer.writeAny(ast.left, fullFormat)
                 writer.writeString(" < ")
-                appendPredicate(ast.right, writer)
+                writer.writeAny(ast.right, fullFormat)
                 writer.writeCloseBracket()
             }
 
             is LteExpr<*> -> {
                 writer.writeOpenBracket()
-                appendPredicate(ast.left, writer)
+                writer.writeAny(ast.left, fullFormat)
                 writer.writeString(" <= ")
-                appendPredicate(ast.right, writer)
+                writer.writeAny(ast.right, fullFormat)
                 writer.writeCloseBracket()
             }
 
             is GtExpr<*> -> {
                 writer.writeOpenBracket()
-                appendPredicate(ast.left, writer)
+                writer.writeAny(ast.left, fullFormat)
                 writer.writeString(" > ")
-                appendPredicate(ast.right, writer)
+                writer.writeAny(ast.right, fullFormat)
                 writer.writeCloseBracket()
             }
 
             is GteExpr<*> -> {
                 writer.writeOpenBracket()
-                appendPredicate(ast.left, writer)
+                writer.writeAny(ast.left, fullFormat)
                 writer.writeString(" ≥ ")
-                appendPredicate(ast.right, writer)
+                writer.writeAny(ast.right, fullFormat)
                 writer.writeCloseBracket()
             }
-        }
-    }
-
-    private fun appendPredicate(ast: Any?, writer: Writer) {
-        when (ast) {
-            is Expr<*> -> build(ast, writer)
-
-            is Relation.Property<*, *> -> {
-                if (fullFormat) {
-                    writer.appendFullPropertyName(ast)
-                } else {
-                    writer.appendShortPropertyName(ast)
-                }
-            }
-
-            else -> writer.appendValue(ast)
         }
     }
 

@@ -5,7 +5,6 @@ import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.math.Union
-import ru.daniilazarnov.pike.dialect.BuilderFactory
 import ru.daniilazarnov.pike.dialect.Writer
 
 open class Selection<R : Relation>(

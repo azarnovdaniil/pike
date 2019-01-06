@@ -31,28 +31,18 @@ open class Writer {
         factory.projectionBuilder().build(projection, this)
     }
 
-    fun writeExpr(expr: Expr<Relation>, fullFormat: Boolean = false) {
+    fun writeExpr(expr: Expr<*>, fullFormat: Boolean = false) {
         factory.exprBuilder(fullFormat).build(expr, this)
     }
 
-    fun writeProjection(projection: Iterable<PropertyIterator<*>>, fullFormat: Boolean) {
-        if ("SELECT".contentEquals(builder.toString().trim()) and projection.none()) {
-            builder.append("*")
-        } else {
-            var delim = ""
-            for (proj in projection) {
-                builder.append(delim)
-                delim = ", "
+    fun writeAny(any: Any?, fullFormat: Boolean = false) {
+        when (any) {
+            is Expr<*> -> writeExpr(any, fullFormat)
 
-                if (proj is Relation.Property<*, *>) {
-                    if (fullFormat) {
-                        appendFullPropertyName(proj)
-                    } else {
-                        appendShortPropertyName(proj)
-                    }
-                } else {
-                    builder.append(proj)
-                }
+            is Relation.Property<*, *> -> writeProperty(any, fullFormat)
+
+            else -> {
+                any?.let { builder.append((any as? String)?.asString() ?: any) } ?: builder.append("NULL")
             }
         }
     }
@@ -66,16 +56,26 @@ open class Writer {
         }
     }
 
-    fun appendShortPropertyName(property: Relation.Property<*, *>) {
-        builder.append("$property")
+    fun writeProperty(property: Relation.Property<*, *>, fullFormat: Boolean = false) {
+        if (fullFormat) {
+            builder.append("${property.relation}.$property")
+        } else {
+            builder.append("$property")
+        }
     }
 
-    fun appendFullPropertyName(property: Relation.Property<*, *>) {
-        builder.append("${property.relation}.$property")
-    }
+    fun writeProjection(projection: Iterable<PropertyIterator<*>>, fullFormat: Boolean) {
+        var delim = ""
+        for (proj in projection) {
+            builder.append(delim)
+            delim = ", "
 
-    fun appendValue(value: Any?) {
-        value?.let { builder.append((value as? String)?.asString() ?: value) } ?: builder.append("NULL")
+            if (proj is Relation.Property<*, *>) {
+                writeProperty(proj, fullFormat)
+            } else {
+                builder.append(proj)
+            }
+        }
     }
 
     private fun String.asString(): String = "\'${this.replace("'", "''")}\'"
