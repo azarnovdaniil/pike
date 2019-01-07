@@ -1,8 +1,8 @@
-package ru.daniilazarnov.pike.core.math
+package ru.daniilazarnov.pike.core.set
 
 import ru.daniilazarnov.pike.core.Build
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.core.query.Projection
+import ru.daniilazarnov.pike.core.unary.Projection
 import ru.daniilazarnov.pike.dialect.Generator
 
 class Union<R : Relation, P : Projection<R>>(

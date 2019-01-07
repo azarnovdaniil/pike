@@ -1,10 +1,10 @@
 package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.*
-import ru.daniilazarnov.pike.dialect.Builder
+import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
-class ExprBuilder(private val fullFormat: Boolean = true) : Builder<Expr<*>> {
+class ExprQBuilder(private val fullFormat: Boolean = true) : QBuilder<Expr<*>> {
 
     override fun build(ast: Expr<*>, generator: Generator) {
         when (ast) {

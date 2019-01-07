@@ -1,10 +1,10 @@
 package ru.daniilazarnov.pike.dialect.builder
 
-import ru.daniilazarnov.pike.core.math.Intersection
-import ru.daniilazarnov.pike.dialect.Builder
+import ru.daniilazarnov.pike.core.set.Intersection
+import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
-object IntersectionBuilder : Builder<Intersection<*, *>> {
+object IntersectionQBuilder : QBuilder<Intersection<*, *>> {
 
     override fun build(ast: Intersection<*, *>, generator: Generator) {
         generator.writeOpenBracket()

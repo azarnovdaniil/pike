@@ -1,10 +1,10 @@
 package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.dialect.Builder
+import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
-object JoinBuilder : Builder<Join<*, *>> {
+object JoinQBuilder : QBuilder<Join<*, *>> {
 
     override fun build(ast: Join<*, *>, generator: Generator) {
         if (ast.type == Join.JoinType.NATURAL) {

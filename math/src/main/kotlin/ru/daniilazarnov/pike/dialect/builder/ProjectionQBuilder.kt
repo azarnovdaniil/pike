@@ -1,11 +1,11 @@
 package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.core.query.Projection
-import ru.daniilazarnov.pike.dialect.Builder
+import ru.daniilazarnov.pike.core.unary.Projection
+import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
-object ProjectionBuilder : Builder<Projection<*>> {
+object ProjectionQBuilder : QBuilder<Projection<*>> {
 
     override fun build(ast: Projection<*>, generator: Generator) {
 

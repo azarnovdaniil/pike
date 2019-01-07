@@ -1,4 +1,4 @@
-package ru.daniilazarnov.pike.core.update
+package ru.daniilazarnov.pike.core.unary
 
 import ru.daniilazarnov.pike.core.Build
 import ru.daniilazarnov.pike.core.data.Relation

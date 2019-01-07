@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.*
 import ru.daniilazarnov.pike.core.eq
 import ru.daniilazarnov.pike.core.gte
-import ru.daniilazarnov.pike.core.query.Selection.Companion.selection
+import ru.daniilazarnov.pike.core.unary.Selection.Companion.selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
 class ProjectionBuilderTest {
@@ -68,7 +68,7 @@ class ProjectionBuilderTest {
     fun `test join`() {
         val expected = "(Person ⋈(Person.address = Address.id) Address)"
         val result = selection(Person)
-                .join(Address, Person.address.eq(Address.id))
+                .equiJoin(Address, Person.address.eq(Address.id))
                 .build(MathGenerator())
 
 
@@ -79,8 +79,8 @@ class ProjectionBuilderTest {
     fun `test double join`() {
         val expected = "(Person ⋈(Person.address = Address.id) Address) ⋈(Person.phone = Contact.id) Contact)"
         val result = selection(Person)
-                .join(Contact, Person.phone.eq(Contact.id))
-                .join(Address, Person.address.eq(Address.id))
+                .equiJoin(Contact, Person.phone.eq(Contact.id))
+                .equiJoin(Address, Person.address.eq(Address.id))
                 .build(MathGenerator())
 
         assertEquals(expected, result)

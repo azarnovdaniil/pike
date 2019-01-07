@@ -1,24 +1,28 @@
 package ru.daniilazarnov.pike.dialect
 
 import ru.daniilazarnov.pike.core.Expr
-import ru.daniilazarnov.pike.core.math.Difference
-import ru.daniilazarnov.pike.core.math.Intersection
-import ru.daniilazarnov.pike.core.math.Union
+import ru.daniilazarnov.pike.core.query.Division
 import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.core.query.Projection
-import ru.daniilazarnov.pike.core.query.Selection
-import ru.daniilazarnov.pike.core.update.Rename
+import ru.daniilazarnov.pike.core.set.Difference
+import ru.daniilazarnov.pike.core.set.Intersection
+import ru.daniilazarnov.pike.core.set.Union
+import ru.daniilazarnov.pike.core.unary.Projection
+import ru.daniilazarnov.pike.core.unary.Rename
+import ru.daniilazarnov.pike.core.unary.Selection
 
 interface BuilderFactory {
 
-    fun exprBuilder(fullFormat: Boolean): Builder<Expr<*>>
+    fun exprBuilder(fullFormat: Boolean): QBuilder<Expr<*>>
 
-    fun differenceBuilder(): Builder<Difference<*, *>>
-    fun intersectionBuilder(): Builder<Intersection<*, *>>
-    fun projectionBuilder(): Builder<Projection<*>>
-    fun selectionBuilder(): Builder<Selection<*>>
-    fun joinBuilder(): Builder<Join<*, *>>
-    fun renameBuilder(): Builder<Rename<*>>
-    fun unionBuilder(): Builder<Union<*, *>>
+    fun differenceBuilder(): QBuilder<Difference<*, *>>
+    fun intersectionBuilder(): QBuilder<Intersection<*, *>>
+    fun unionBuilder(): QBuilder<Union<*, *>>
+
+    fun projectionBuilder(): QBuilder<Projection<*>>
+    fun selectionBuilder(): QBuilder<Selection<*>>
+    fun renameBuilder(): QBuilder<Rename<*>>
+
+    fun joinBuilder(): QBuilder<Join<*, *>>
+    fun divisionBuilder(): QBuilder<Division<*, *>>
 
 }

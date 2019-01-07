@@ -1,11 +1,11 @@
 package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.core.query.Selection
-import ru.daniilazarnov.pike.dialect.Builder
+import ru.daniilazarnov.pike.core.unary.Selection
+import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
-object SelectionBuilder : Builder<Selection<*>> {
+object SelectionQBuilder : QBuilder<Selection<*>> {
 
     override fun build(ast: Selection<*>, generator: Generator) {
         when (ast) {

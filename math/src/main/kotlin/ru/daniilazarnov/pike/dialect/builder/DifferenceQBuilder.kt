@@ -1,11 +1,10 @@
 package ru.daniilazarnov.pike.dialect.builder
 
-import ru.daniilazarnov.pike.core.math.Difference
-import ru.daniilazarnov.pike.dialect.Builder
+import ru.daniilazarnov.pike.core.set.Difference
+import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
-import ru.daniilazarnov.pike.dialect.MathGenerator
 
-object DifferenceBuilder : Builder<Difference<*, *>> {
+object DifferenceQBuilder : QBuilder<Difference<*, *>> {
 
     override fun build(ast: Difference<*, *>, generator: Generator) {
         generator.writeOpenBracket()

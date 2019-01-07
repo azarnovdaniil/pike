@@ -4,8 +4,8 @@ import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.core.query.Projection
-import ru.daniilazarnov.pike.core.query.Selection
+import ru.daniilazarnov.pike.core.unary.Projection
+import ru.daniilazarnov.pike.core.unary.Selection
 
 abstract class Generator {
 
