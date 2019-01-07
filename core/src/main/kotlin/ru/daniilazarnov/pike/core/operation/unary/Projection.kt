@@ -4,6 +4,7 @@ import ru.daniilazarnov.pike.core.Build
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.operation.binary.Division
+import ru.daniilazarnov.pike.core.operation.set.Cartesian
 import ru.daniilazarnov.pike.core.operation.set.Difference
 import ru.daniilazarnov.pike.core.operation.set.Intersection
 import ru.daniilazarnov.pike.core.operation.set.Union
@@ -27,6 +28,10 @@ class Projection<R : Relation>(
 
     fun <P2 : Projection<*>> division(projection2: P2): Division<Projection<R>, P2> {
         return Division(this, projection2)
+    }
+
+    fun <P2 : Projection<*>> cartesian(projection2: P2): Cartesian<Projection<R>, P2> {
+        return Cartesian(this, projection2)
     }
 
     override fun build(generator: Generator): String {

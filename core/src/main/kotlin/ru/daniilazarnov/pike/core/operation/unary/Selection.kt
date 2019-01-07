@@ -6,6 +6,7 @@ import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.operation.binary.Division
 import ru.daniilazarnov.pike.core.operation.binary.Join
+import ru.daniilazarnov.pike.core.operation.set.Cartesian
 import ru.daniilazarnov.pike.core.operation.set.Union
 import ru.daniilazarnov.pike.dialect.Generator
 
@@ -57,6 +58,18 @@ open class Selection<R : Relation>(
 
     fun <R2 : Relation> division(relation: R2): Division<Projection<R>, Projection<R2>> {
         return division(selection(relation))
+    }
+
+    fun <R2 : Relation, S : Selection<R2>> cartesian(selection: S): Cartesian<Projection<R>, Projection<R2>> {
+        return cartesian(selection.projection(listOf()))
+    }
+
+    fun <P2 : Projection<*>> cartesian(projection2: P2): Cartesian<Projection<R>, P2> {
+        return projection(listOf()).cartesian(projection2)
+    }
+
+    fun <R2 : Relation> cartesian(relation: R2): Cartesian<Projection<R>, Projection<R2>> {
+        return cartesian(selection(relation))
     }
 
     fun <S : Selection<R>> union(selection: S): Union<R, Projection<R>> {

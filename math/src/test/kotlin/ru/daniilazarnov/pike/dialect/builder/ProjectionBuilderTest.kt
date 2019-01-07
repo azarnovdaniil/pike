@@ -29,34 +29,6 @@ class ProjectionBuilderTest {
     }
 
     @Test
-    fun `test selection`() {
-        val expected = "σ(age ≥ 34)(Person)"
-        val result = selection(Person, Person.age.gte(34)).build(MathGenerator())
-
-        assertEquals(expected, result)
-    }
-
-    @Test
-    fun `test projection`() {
-        val expected = "π(age, weight)(Person)"
-        val result = selection(Person)
-                .projection(Person.age..Person.weight)
-                .build(MathGenerator())
-
-        assertEquals(expected, result)
-    }
-
-    @Test
-    fun `test selection and projection`() {
-        val expected = "σ(age ≥ 34)π(age, weight)(Person)"
-        val result = selection(Person, Person.age.gte(34))
-                .projection(Person.age..Person.weight)
-                .build(MathGenerator())
-
-        assertEquals(expected, result)
-    }
-
-    @Test
     fun `test natural join`() {
         val expected = "(Person ⋈ Address)"
         val result = selection(Person).naturalJoin(Address).build(MathGenerator())
@@ -71,7 +43,6 @@ class ProjectionBuilderTest {
                 .equiJoin(Address, Person.address.eq(Address.id))
                 .build(MathGenerator())
 
-
         assertEquals(expected, result)
     }
 
@@ -82,14 +53,6 @@ class ProjectionBuilderTest {
                 .equiJoin(Contact, Person.phone.eq(Contact.id))
                 .equiJoin(Address, Person.address.eq(Address.id))
                 .build(MathGenerator())
-
-        assertEquals(expected, result)
-    }
-
-    @Test
-    fun `test union`() {
-        val expected = "((Person) ∪ (Person))"
-        val result = selection(Person).union(selection(Person)).build(MathGenerator())
 
         assertEquals(expected, result)
     }

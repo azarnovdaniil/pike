@@ -7,7 +7,7 @@ import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.operation.unary.Selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
-class DivisionQBuilderTest {
+class SetQBuilderTest {
     private object Person : Relation("Person") {
         val id = Property<Person, Type.Id>("id")
         val name = Property<Person, Type.Str>("name")
@@ -23,9 +23,25 @@ class DivisionQBuilderTest {
     }
 
     @Test
+    fun `test union`() {
+        val expected = "((Person) ∪ (Person))"
+        val result = Selection.selection(Person).union(Selection.selection(Person)).build(MathGenerator())
+
+        Assertions.assertEquals(expected, result)
+    }
+
+    @Test
     fun `test division`() {
         val expected = "((Person) ÷ (Address))"
         val result = Selection.selection(Person).division(Address).build(MathGenerator())
+
+        Assertions.assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test cartesian`() {
+        val expected = "((Person) × (Address))"
+        val result = Selection.selection(Person).cartesian(Address).build(MathGenerator())
 
         Assertions.assertEquals(expected, result)
     }

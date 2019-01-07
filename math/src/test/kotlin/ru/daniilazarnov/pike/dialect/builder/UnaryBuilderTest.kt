@@ -5,18 +5,46 @@ import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.data.rangeTo
+import ru.daniilazarnov.pike.core.gte
 import ru.daniilazarnov.pike.core.operation.unary.Rename
+import ru.daniilazarnov.pike.core.operation.unary.Selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
-internal class RenameBuilderTest {
+internal class UnaryBuilderTest {
 
     private object Person : Relation("Person") {
         val id = Property<Person, Type.Id>("id")
         val name = Property<Person, Type.Str>("name")
         val age = Property<Person, Type.Num>("age")
         val weight = Property<Person, Type.Num>("weight")
-        val address = Property<Person, Type.Id>("address")
-        val phone = Property<Person, Type.Id>("phone")
+    }
+
+    @Test
+    fun `test selection`() {
+        val expected = "σ(age ≥ 34)(Person)"
+        val result = Selection.selection(Person, Person.age.gte(34)).build(MathGenerator())
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test projection`() {
+        val expected = "π(age, weight)(Person)"
+        val result = Selection.selection(Person)
+                .projection(Person.age..Person.weight)
+                .build(MathGenerator())
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `test selection and projection`() {
+        val expected = "σ(age ≥ 34)π(age, weight)(Person)"
+        val result = Selection.selection(Person, Person.age.gte(34))
+                .projection(Person.age..Person.weight)
+                .build(MathGenerator())
+
+        assertEquals(expected, result)
     }
 
     @Test

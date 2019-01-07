@@ -14,7 +14,7 @@ class Rename<R : Relation>(
             return Rename(relation, listOf(property), listOf(newName))
         }
 
-        fun <R : Relation, P : Relation.Property<R, *>> rename(relation: R, properties: Iterable<Relation.Property<R, *>>, newNames: Iterable<String>): Rename<R> {
+        fun <R : Relation> rename(relation: R, properties: Iterable<Relation.Property<R, *>>, newNames: Iterable<String>): Rename<R> {
             return Rename(relation, properties, newNames)
         }
     }

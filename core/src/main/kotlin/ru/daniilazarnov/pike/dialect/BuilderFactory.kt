@@ -3,6 +3,7 @@ package ru.daniilazarnov.pike.dialect
 import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.operation.binary.Division
 import ru.daniilazarnov.pike.core.operation.binary.Join
+import ru.daniilazarnov.pike.core.operation.set.Cartesian
 import ru.daniilazarnov.pike.core.operation.set.Difference
 import ru.daniilazarnov.pike.core.operation.set.Intersection
 import ru.daniilazarnov.pike.core.operation.set.Union
@@ -17,6 +18,7 @@ interface BuilderFactory {
     fun differenceBuilder(): QBuilder<Difference<*, *>>
     fun intersectionBuilder(): QBuilder<Intersection<*, *>>
     fun unionBuilder(): QBuilder<Union<*, *>>
+    fun cartesianBuilder(): QBuilder<Cartesian<*, *>>
 
     fun projectionBuilder(): QBuilder<Projection<*>>
     fun selectionBuilder(): QBuilder<Selection<*>>
