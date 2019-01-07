@@ -8,7 +8,7 @@ import ru.daniilazarnov.pike.core.gte
 import ru.daniilazarnov.pike.core.operation.unary.Selection.Companion.selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
-class ProjectionBuilderTest {
+class BinaryBuilderTest {
     private object Person : Relation("Person") {
         val id = Property<Person, Type.Id>("id")
         val name = Property<Person, Type.Str>("name")

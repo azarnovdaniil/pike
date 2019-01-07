@@ -7,7 +7,7 @@ import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.operation.unary.Selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
-class SetQBuilderTest {
+class SetBuilderTest {
     private object Person : Relation("Person") {
         val id = Property<Person, Type.Id>("id")
         val name = Property<Person, Type.Str>("name")
