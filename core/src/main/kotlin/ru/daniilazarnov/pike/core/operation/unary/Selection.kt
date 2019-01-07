@@ -45,15 +45,19 @@ open class Selection<R : Relation>(
     }
 
     fun <P : Projection<R>> union(projection: P): Union<R, Projection<R>> {
-        return Union(Projection(projection = listOf(), selection = this), projection)
+        return projection().union(projection)
+    }
+
+    fun <S : Selection<R>> union(selection: S): Union<R, Projection<R>> {
+        return union(selection.projection())
     }
 
     fun <P2 : Projection<*>> division(projection2: P2): Division<Projection<R>, P2> {
-        return projection(listOf()).division(projection2)
+        return projection().division(projection2)
     }
 
     fun <R2 : Relation, S : Selection<R2>> division(selection: S): Division<Projection<R>, Projection<R2>> {
-        return division(selection.projection(listOf()))
+        return division(selection.projection())
     }
 
     fun <R2 : Relation> division(relation: R2): Division<Projection<R>, Projection<R2>> {
@@ -61,27 +65,27 @@ open class Selection<R : Relation>(
     }
 
     fun <R2 : Relation, S : Selection<R2>> cartesian(selection: S): Cartesian<Projection<R>, Projection<R2>> {
-        return cartesian(selection.projection(listOf()))
+        return cartesian(selection.projection())
     }
 
     fun <P2 : Projection<*>> cartesian(projection2: P2): Cartesian<Projection<R>, P2> {
-        return projection(listOf()).cartesian(projection2)
+        return projection().cartesian(projection2)
     }
 
     fun <R2 : Relation> cartesian(relation: R2): Cartesian<Projection<R>, Projection<R2>> {
         return cartesian(selection(relation))
     }
 
-    fun <S : Selection<R>> union(selection: S): Union<R, Projection<R>> {
-        return union(Projection(projection = listOf(), selection = selection))
-    }
-
     fun projection(projection: Iterable<PropertyIterator<R>>): Projection<R> {
         return Projection(projection = projection, selection = this)
     }
 
+    private fun projection(): Projection<R> {
+        return projection(listOf())
+    }
+
     override fun build(generator: Generator): String {
-        generator.factory.projectionBuilder().build(this.projection(listOf()), generator)
+        generator.factory.projectionBuilder().build(this.projection(), generator)
         return generator.toString()
     }
 
