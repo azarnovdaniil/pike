@@ -2,18 +2,16 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.operation.binary.Join
 import ru.daniilazarnov.pike.core.operation.unary.Projection
-import ru.daniilazarnov.pike.dialect.OperationBuilder
 import ru.daniilazarnov.pike.dialect.Generator
+import ru.daniilazarnov.pike.dialect.OperationBuilder
 
 object ProjectionBuilder : OperationBuilder<Projection<*>> {
 
     override fun build(ast: Projection<*>, generator: Generator) {
 
         val selection = ast.selection
-        when (selection) {
-            !is Join<*, *> -> {
-                generator.writeSelection(selection)
-            }
+        if (selection !is Join<*, *>) {
+            generator.writeSelection(selection)
         }
 
         val projection = ast.projection
@@ -27,10 +25,8 @@ object ProjectionBuilder : OperationBuilder<Projection<*>> {
         generator.writeOpenBracket()
         generator.writeRelation(selection.relation)
 
-        when (selection) {
-            is Join<*, *> -> {
-                generator.writeJoin(selection)
-            }
+        if (selection is Join<*, *>) {
+            generator.writeJoin(selection)
         }
 
         generator.writeCloseBracket()

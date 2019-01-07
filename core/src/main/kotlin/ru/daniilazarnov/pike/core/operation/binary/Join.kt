@@ -21,13 +21,8 @@ class Join<R : Relation, R2 : Relation>(
         RIGHT_ANTI
     }
 
-    var join: Join<R, out Relation>? = null
-
     override fun <R3 : Relation> equiJoin(relation2: R3, expr: Expr<R3>): Join<R, R3> {
-        val join = Join(this, relation2, JoinType.EQUI, expr)
-        this.join = join
-
-        return join
+        return Join(this, relation2, JoinType.EQUI, expr)
     }
 
 }
