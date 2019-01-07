@@ -1,6 +1,6 @@
 package ru.daniilazarnov.pike.core.operation.unary
 
-import ru.daniilazarnov.pike.core.Build
+import ru.daniilazarnov.pike.core.Operation
 import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
@@ -12,7 +12,7 @@ import ru.daniilazarnov.pike.dialect.Generator
 
 open class Selection<R : Relation>(
         val relation: R,
-        val expr: Expr<R>?) : Build {
+        val expr: Expr<R>?) : Operation {
 
     companion object {
         fun <R : Relation> selection(relation: R): Selection<R> {

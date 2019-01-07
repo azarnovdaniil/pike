@@ -1,13 +1,13 @@
 package ru.daniilazarnov.pike.core.operation.unary
 
-import ru.daniilazarnov.pike.core.Build
+import ru.daniilazarnov.pike.core.Operation
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.dialect.Generator
 
 class Rename<R : Relation>(
         val relation: R,
         val properties: Iterable<Relation.Property<R, *>>,
-        val newNames: Iterable<String>) : Build {
+        val newNames: Iterable<String>) : Operation {
 
     companion object {
         fun <R : Relation, P : Relation.Property<R, *>> rename(relation: R, property: P, newName: String): Rename<R> {

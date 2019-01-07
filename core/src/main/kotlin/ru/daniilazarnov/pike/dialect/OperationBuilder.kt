@@ -1,6 +1,6 @@
 package ru.daniilazarnov.pike.dialect
 
-interface QBuilder<A : Any> {
+interface OperationBuilder<A : Any> {
 
     fun build(ast: A, generator: Generator)
 

@@ -1,15 +1,15 @@
 package ru.daniilazarnov.pike.dialect.builder
 
-import ru.daniilazarnov.pike.core.operation.set.Cartesian
+import ru.daniilazarnov.pike.core.operation.binary.Division
 import ru.daniilazarnov.pike.dialect.Generator
-import ru.daniilazarnov.pike.dialect.QBuilder
+import ru.daniilazarnov.pike.dialect.OperationBuilder
 
-object CartesianQBuilder : QBuilder<Cartesian<*, *>> {
+object DivisionBuilder : OperationBuilder<Division<*, *>> {
 
-    override fun build(ast: Cartesian<*, *>, generator: Generator) {
+    override fun build(ast: Division<*, *>, generator: Generator) {
         generator.writeOpenBracket()
         generator.writeProjection(ast.projection1)
-        generator.writeString(" × ")
+        generator.writeString(" ÷ ")
         generator.writeProjection(ast.projection2)
         generator.writeCloseBracket()
     }

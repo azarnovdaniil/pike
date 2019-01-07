@@ -2,10 +2,10 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.operation.binary.Join
 import ru.daniilazarnov.pike.core.operation.unary.Projection
-import ru.daniilazarnov.pike.dialect.QBuilder
+import ru.daniilazarnov.pike.dialect.OperationBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
-object ProjectionQBuilder : QBuilder<Projection<*>> {
+object ProjectionBuilder : OperationBuilder<Projection<*>> {
 
     override fun build(ast: Projection<*>, generator: Generator) {
 

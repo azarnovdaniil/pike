@@ -13,18 +13,18 @@ import ru.daniilazarnov.pike.core.operation.unary.Selection
 
 interface BuilderFactory {
 
-    fun exprBuilder(fullFormat: Boolean): QBuilder<Expr<*>>
+    fun exprBuilder(fullFormat: Boolean): OperationBuilder<Expr<*>>
 
-    fun differenceBuilder(): QBuilder<Difference<*, *>>
-    fun intersectionBuilder(): QBuilder<Intersection<*, *>>
-    fun unionBuilder(): QBuilder<Union<*, *>>
-    fun cartesianBuilder(): QBuilder<Cartesian<*, *>>
+    fun differenceBuilder(): OperationBuilder<Difference<*, *>>
+    fun intersectionBuilder(): OperationBuilder<Intersection<*, *>>
+    fun unionBuilder(): OperationBuilder<Union<*, *>>
+    fun cartesianBuilder(): OperationBuilder<Cartesian<*, *>>
 
-    fun projectionBuilder(): QBuilder<Projection<*>>
-    fun selectionBuilder(): QBuilder<Selection<*>>
-    fun renameBuilder(): QBuilder<Rename<*>>
+    fun projectionBuilder(): OperationBuilder<Projection<*>>
+    fun selectionBuilder(): OperationBuilder<Selection<*>>
+    fun renameBuilder(): OperationBuilder<Rename<*>>
 
-    fun joinBuilder(): QBuilder<Join<*, *>>
-    fun divisionBuilder(): QBuilder<Division<*, *>>
+    fun joinBuilder(): OperationBuilder<Join<*, *>>
+    fun divisionBuilder(): OperationBuilder<Division<*, *>>
 
 }

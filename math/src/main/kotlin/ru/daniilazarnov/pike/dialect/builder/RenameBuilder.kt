@@ -1,10 +1,10 @@
 package ru.daniilazarnov.pike.dialect.builder
 
 import ru.daniilazarnov.pike.core.operation.unary.Rename
-import ru.daniilazarnov.pike.dialect.QBuilder
+import ru.daniilazarnov.pike.dialect.OperationBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
-object RenameQBuilder : QBuilder<Rename<*>> {
+object RenameBuilder : OperationBuilder<Rename<*>> {
 
     override fun build(ast: Rename<*>, generator: Generator) {
         generator.writeString("ρ")

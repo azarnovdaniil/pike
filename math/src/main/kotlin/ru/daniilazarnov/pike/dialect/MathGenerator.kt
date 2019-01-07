@@ -5,7 +5,7 @@ import ru.daniilazarnov.pike.core.data.Relation
 
 open class MathGenerator : Generator() {
 
-    override val factory: BuilderFactory = MathBuilderFactory
+    override val factory: BuilderFactory = RelationAlgebraBuilderFactory
 
     override fun writeAny(any: Any?, fullFormat: Boolean) {
         when (any) {

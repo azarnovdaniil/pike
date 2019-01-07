@@ -1,6 +1,6 @@
 package ru.daniilazarnov.pike.core.operation.unary
 
-import ru.daniilazarnov.pike.core.Build
+import ru.daniilazarnov.pike.core.Operation
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.operation.binary.Division
@@ -12,7 +12,7 @@ import ru.daniilazarnov.pike.dialect.Generator
 
 class Projection<R : Relation>(
         val projection: Iterable<PropertyIterator<R>>,
-        val selection: Selection<R>) : Build {
+        val selection: Selection<R>) : Operation {
 
     fun <P : Projection<R>> union(projection2: P): Union<R, Projection<R>> {
         return Union(this, projection2)
