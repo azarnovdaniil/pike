@@ -7,11 +7,12 @@ import ru.daniilazarnov.pike.dialect.Generator
 object JoinBuilder : OperationBuilder<Join<*, *>> {
 
     override fun build(ast: Join<*, *>, generator: Generator) {
-        when(ast.type) {
+        when (ast.type) {
             Join.JoinType.NATURAL -> {
                 generator.writeString(" ⋈ ")
                 generator.writeRelation(ast.relation2)
             }
+
             Join.JoinType.EQUI -> {
                 generator.writeString(" ⋈")
                 val condition = ast.condition
@@ -21,22 +22,27 @@ object JoinBuilder : OperationBuilder<Join<*, *>> {
                 generator.writeString(" ")
                 generator.writeRelation(ast.relation2)
             }
+
             Join.JoinType.LEFT -> {
                 generator.writeString(" ⋉ ")
                 generator.writeRelation(ast.relation2)
             }
+
             Join.JoinType.RIGHT -> {
                 generator.writeString(" ⋊ ")
                 generator.writeRelation(ast.relation2)
             }
+
             Join.JoinType.FULL -> {
                 generator.writeString(" ⟗ ")
                 generator.writeRelation(ast.relation2)
             }
+
             Join.JoinType.LEFT_ANTI -> {
                 generator.writeString(" ▷ ")
                 generator.writeRelation(ast.relation2)
             }
+
             Join.JoinType.RIGHT_ANTI -> {
                 generator.writeString(" ◁ ")
                 generator.writeRelation(ast.relation2)
