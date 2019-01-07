@@ -2,9 +2,11 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import ru.daniilazarnov.pike.core.and
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.data.rangeTo
+import ru.daniilazarnov.pike.core.eq
 import ru.daniilazarnov.pike.core.gte
 import ru.daniilazarnov.pike.core.operation.unary.Rename
 import ru.daniilazarnov.pike.core.operation.unary.Selection
@@ -21,8 +23,8 @@ internal class UnaryBuilderTest {
 
     @Test
     fun `test selection`() {
-        val expected = "σ(age ≥ 34)(Person)"
-        val result = Selection.selection(Person, Person.age.gte(34)).build(MathGenerator())
+        val expected = "σ((age ≥ 34) ∧ (name = 'Vasyan'))(Person)"
+        val result = Selection.selection(Person, Person.age.gte(34).and(Person.name.eq("Vasyan"))).build(MathGenerator())
 
         assertEquals(expected, result)
     }

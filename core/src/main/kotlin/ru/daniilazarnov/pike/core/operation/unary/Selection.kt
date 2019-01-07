@@ -36,8 +36,16 @@ open class Selection<R : Relation>(
         return Join(this, relation2, Join.JoinType.RIGHT, expr)
     }
 
-    open fun <R2 : Relation> antiJoin(relation2: R2): Join<R, out Relation> {
-        return Join(this, relation2, Join.JoinType.ANTI, expr)
+    open fun <R2 : Relation> leftAntiJoin(relation2: R2): Join<R, out Relation> {
+        return Join(this, relation2, Join.JoinType.LEFT_ANTI, expr)
+    }
+
+    open fun <R2 : Relation> rightAntiJoin(relation2: R2): Join<R, out Relation> {
+        return Join(this, relation2, Join.JoinType.RIGHT_ANTI, expr)
+    }
+
+    open fun <R2 : Relation> fullJoin(relation2: R2): Join<R, out Relation> {
+        return Join(this, relation2, Join.JoinType.FULL, expr)
     }
 
     fun <R2 : Relation> naturalJoin(relation2: R2): Join<R, R2> {

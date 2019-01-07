@@ -16,7 +16,9 @@ class Join<R : Relation, R2 : Relation>(
         EQUI,
         LEFT,
         RIGHT,
-        ANTI
+        FULL,
+        LEFT_ANTI,
+        RIGHT_ANTI
     }
 
     var join: Join<R, out Relation>? = null
