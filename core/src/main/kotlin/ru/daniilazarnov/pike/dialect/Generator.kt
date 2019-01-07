@@ -11,7 +11,7 @@ abstract class Generator {
 
     abstract val factory: BuilderFactory
 
-    private val builder = StringBuilder()
+    protected val builder = StringBuilder()
 
     fun writeOpenBracket() {
         writeString("(")
@@ -45,7 +45,7 @@ abstract class Generator {
         factory.exprBuilder(fullFormat).build(expr, this)
     }
 
-    fun writeAny(any: Any?, fullFormat: Boolean = false) {
+    open fun writeAny(any: Any?, fullFormat: Boolean = false) {
         when (any) {
             is Expr<*> -> writeExpr(any, fullFormat)
 
@@ -88,7 +88,7 @@ abstract class Generator {
         }
     }
 
-    private fun String.asString(): String = "\'${this.replace("'", "''")}\'"
+    fun String.asString(): String = "\'${this.replace("'", "''")}\'"
 
     override fun toString(): String {
         return builder.toString()
