@@ -1,8 +1,8 @@
-package ru.daniilazarnov.pike.core.set
+package ru.daniilazarnov.pike.core.operation.set
 
 import ru.daniilazarnov.pike.core.Build
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.core.unary.Projection
+import ru.daniilazarnov.pike.core.operation.unary.Projection
 import ru.daniilazarnov.pike.dialect.Generator
 
 class Difference<R : Relation, P : Projection<R>>(

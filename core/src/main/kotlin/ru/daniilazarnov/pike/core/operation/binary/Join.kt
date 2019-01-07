@@ -1,8 +1,8 @@
-package ru.daniilazarnov.pike.core.query
+package ru.daniilazarnov.pike.core.operation.binary
 
 import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.core.unary.Selection
+import ru.daniilazarnov.pike.core.operation.unary.Selection
 
 class Join<R : Relation, R2 : Relation>(
         val selection: Selection<R>,

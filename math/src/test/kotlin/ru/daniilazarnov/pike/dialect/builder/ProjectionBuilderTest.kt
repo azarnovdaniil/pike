@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.*
 import ru.daniilazarnov.pike.core.eq
 import ru.daniilazarnov.pike.core.gte
-import ru.daniilazarnov.pike.core.unary.Selection.Companion.selection
+import ru.daniilazarnov.pike.core.operation.unary.Selection.Companion.selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
 class ProjectionBuilderTest {

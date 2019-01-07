@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import ru.daniilazarnov.pike.core.data.Relation
 import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.data.rangeTo
-import ru.daniilazarnov.pike.core.unary.Rename
+import ru.daniilazarnov.pike.core.operation.unary.Rename
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
 internal class RenameBuilderTest {

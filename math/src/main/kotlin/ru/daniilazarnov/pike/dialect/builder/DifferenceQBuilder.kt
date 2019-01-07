@@ -1,6 +1,6 @@
 package ru.daniilazarnov.pike.dialect.builder
 
-import ru.daniilazarnov.pike.core.set.Difference
+import ru.daniilazarnov.pike.core.operation.set.Difference
 import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 

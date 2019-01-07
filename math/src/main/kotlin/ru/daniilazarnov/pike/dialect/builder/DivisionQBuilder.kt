@@ -1,6 +1,6 @@
 package ru.daniilazarnov.pike.dialect.builder
 
-import ru.daniilazarnov.pike.core.query.Division
+import ru.daniilazarnov.pike.core.operation.binary.Division
 import ru.daniilazarnov.pike.dialect.Generator
 import ru.daniilazarnov.pike.dialect.QBuilder
 

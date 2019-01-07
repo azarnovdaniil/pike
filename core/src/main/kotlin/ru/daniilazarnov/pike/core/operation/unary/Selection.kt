@@ -1,12 +1,12 @@
-package ru.daniilazarnov.pike.core.unary
+package ru.daniilazarnov.pike.core.operation.unary
 
 import ru.daniilazarnov.pike.core.Build
 import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.core.query.Division
-import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.core.set.Union
+import ru.daniilazarnov.pike.core.operation.binary.Division
+import ru.daniilazarnov.pike.core.operation.binary.Join
+import ru.daniilazarnov.pike.core.operation.set.Union
 import ru.daniilazarnov.pike.dialect.Generator
 
 open class Selection<R : Relation>(

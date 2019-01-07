@@ -1,6 +1,6 @@
 package ru.daniilazarnov.pike.dialect.builder
 
-import ru.daniilazarnov.pike.core.unary.Rename
+import ru.daniilazarnov.pike.core.operation.unary.Rename
 import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 

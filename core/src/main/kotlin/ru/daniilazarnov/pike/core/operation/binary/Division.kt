@@ -1,7 +1,7 @@
-package ru.daniilazarnov.pike.core.query
+package ru.daniilazarnov.pike.core.operation.binary
 
 import ru.daniilazarnov.pike.core.Build
-import ru.daniilazarnov.pike.core.unary.Projection
+import ru.daniilazarnov.pike.core.operation.unary.Projection
 import ru.daniilazarnov.pike.dialect.Generator
 
 class Division<P : Projection<*>, P2 : Projection<*>>(

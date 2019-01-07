@@ -3,9 +3,9 @@ package ru.daniilazarnov.pike.dialect
 import ru.daniilazarnov.pike.core.Expr
 import ru.daniilazarnov.pike.core.data.PropertyIterator
 import ru.daniilazarnov.pike.core.data.Relation
-import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.core.unary.Projection
-import ru.daniilazarnov.pike.core.unary.Selection
+import ru.daniilazarnov.pike.core.operation.binary.Join
+import ru.daniilazarnov.pike.core.operation.unary.Projection
+import ru.daniilazarnov.pike.core.operation.unary.Selection
 
 abstract class Generator {
 

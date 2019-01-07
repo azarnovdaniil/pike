@@ -1,7 +1,7 @@
 package ru.daniilazarnov.pike.dialect.builder
 
-import ru.daniilazarnov.pike.core.query.Join
-import ru.daniilazarnov.pike.core.unary.Projection
+import ru.daniilazarnov.pike.core.operation.binary.Join
+import ru.daniilazarnov.pike.core.operation.unary.Projection
 import ru.daniilazarnov.pike.dialect.QBuilder
 import ru.daniilazarnov.pike.dialect.Generator
 
