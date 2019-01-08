@@ -8,8 +8,8 @@ import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.data.rangeTo
 import ru.daniilazarnov.pike.core.eq
 import ru.daniilazarnov.pike.core.gte
-import ru.daniilazarnov.pike.core.operation.unary.Rename
-import ru.daniilazarnov.pike.core.operation.unary.Selection
+import ru.daniilazarnov.pike.core.operation.unary.Rename.Companion.rename
+import ru.daniilazarnov.pike.core.operation.unary.Selection.Companion.selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
 internal class UnaryBuilderTest {
@@ -24,7 +24,7 @@ internal class UnaryBuilderTest {
     @Test
     fun `test selection`() {
         val expected = "σ((age ≥ 34) ∧ (name = 'Vasyan'))(Person)"
-        val result = Selection.selection(Person, Person.age.gte(34).and(Person.name.eq("Vasyan"))).build(MathGenerator())
+        val result = selection(Person, Person.age.gte(34).and(Person.name.eq("Vasyan"))).build(MathGenerator())
 
         assertEquals(expected, result)
     }
@@ -32,7 +32,7 @@ internal class UnaryBuilderTest {
     @Test
     fun `test projection`() {
         val expected = "π(age, weight)(Person)"
-        val result = Selection.selection(Person)
+        val result = selection(Person)
                 .projection(Person.age..Person.weight)
                 .build(MathGenerator())
 
@@ -42,7 +42,7 @@ internal class UnaryBuilderTest {
     @Test
     fun `test selection and projection`() {
         val expected = "σ(age ≥ 34)π(age, weight)(Person)"
-        val result = Selection.selection(Person, Person.age.gte(34))
+        val result = selection(Person, Person.age.gte(34))
                 .projection(Person.age..Person.weight)
                 .build(MathGenerator())
 
@@ -52,7 +52,7 @@ internal class UnaryBuilderTest {
     @Test
     fun `test rename`() {
         val expected = "ρ(age / old)(Person)"
-        val result = Rename.rename(Person, Person.age, "old").build(MathGenerator())
+        val result = rename(Person, Person.age, "old").build(MathGenerator())
 
         assertEquals(expected, result)
     }
@@ -60,7 +60,7 @@ internal class UnaryBuilderTest {
     @Test
     fun `test renames`() {
         val expected = "ρ(age, weight / old, fat)(Person)"
-        val result = Rename.rename(Person, Person.age..Person.weight, listOf("old", "fat")).build(MathGenerator())
+        val result = rename(Person, Person.age..Person.weight, listOf("old", "fat")).build(MathGenerator())
 
         assertEquals(expected, result)
     }
