@@ -18,8 +18,8 @@ class SetBuilderTest {
     }
 
     private object Address : Relation("Address") {
-        val id = Property<Person, Type.Id>("id")
-        val city = Property<Person, Type.Str>("city")
+        val id = Property<Address, Type.Id>("id")
+        val city = Property<Address, Type.Str>("city")
     }
 
     @Test

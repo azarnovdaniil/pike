@@ -2,9 +2,9 @@ package ru.daniilazarnov.pike.dialect.builder
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import ru.daniilazarnov.pike.core.data.*
+import ru.daniilazarnov.pike.core.data.Relation
+import ru.daniilazarnov.pike.core.data.Type
 import ru.daniilazarnov.pike.core.eq
-import ru.daniilazarnov.pike.core.gte
 import ru.daniilazarnov.pike.core.operation.unary.Selection.Companion.selection
 import ru.daniilazarnov.pike.dialect.MathGenerator
 
@@ -19,13 +19,13 @@ class BinaryBuilderTest {
     }
 
     private object Address : Relation("Address") {
-        val id = Property<Person, Type.Id>("id")
-        val city = Property<Person, Type.Str>("city")
+        val id = Property<Address, Type.Id>("id")
+        val city = Property<Address, Type.Str>("city")
     }
 
     private object Contact : Relation("Contact") {
-        val id = Property<Person, Type.Id>("id")
-        val phone = Property<Person, Type.Str>("phone")
+        val id = Property<Contact, Type.Id>("id")
+        val phone = Property<Contact, Type.Str>("phone")
     }
 
     @Test

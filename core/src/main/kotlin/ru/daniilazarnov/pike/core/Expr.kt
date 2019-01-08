@@ -23,7 +23,7 @@ fun <R : Relation> Expr<R>.or(expr: Expr<R>): OrExpr<R> {
 
 class EqExpr<R : Relation>(val left: Any?, val right: Any?) : Expr<R>
 
-fun <R : Relation> Relation.Property<R, out Type>.eq(property: Relation.Property<R, out Type>): EqExpr<R> {
+fun <R : Relation, T : Type> Relation.Property<R, T>.eq(property: Relation.Property<out Relation, T>): EqExpr<R> {
     return EqExpr(this, property)
 }
 
